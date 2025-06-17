@@ -1,0 +1,6 @@
+@GerenciamentoTurmasApi_HostAddress = http://localhost:5263
+
+GET {{GerenciamentoTurmasApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

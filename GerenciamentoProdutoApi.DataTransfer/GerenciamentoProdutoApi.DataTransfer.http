@@ -1,0 +1,6 @@
+@GerenciamentoProdutoApi.DataTransfer_HostAddress = http://localhost:5076
+
+GET {{GerenciamentoProdutoApi.DataTransfer_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
