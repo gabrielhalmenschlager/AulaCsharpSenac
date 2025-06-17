@@ -1,5 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
+/*
+
+// Meu Codigo
 
 namespace CadastroAlunos
 {
@@ -121,3 +123,97 @@ namespace CadastroAlunos
         }
     }
 }
+
+*/
+
+// Codigo do Professor
+
+var alunos = new List<Aluno>();
+
+bool deveContinuar = true;
+
+while (deveContinuar)
+{
+    Console.WriteLine("Bem vindo ao cadastro de alunos!!!");
+    Console.WriteLine("\nEscolha uma opção avaixo:");
+    Console.WriteLine("1. Adicionar aluno");
+    Console.WriteLine("2. Remover aluno");
+    Console.WriteLine("3. Listar aluno");
+    Console.WriteLine("0. Sair do programa");
+
+    string opcao = Console.ReadLine();
+
+    switch (opcao)
+    {
+        case "1":
+
+            Console.WriteLine("Digite o CPF do aluno (somente números)");
+            string cpfAlunoAdicionar = Console.ReadLine();
+
+            bool cpfJaExiste = alunos.Any(a => a.Cpf == cpfAlunoAdicionar);
+            
+            if (cpfJaExiste)
+            {
+                Console.WriteLine($"O CPF {cpfAlunoAdicionar} ja existe na base");
+                break;
+            }
+
+            Console.WriteLine("Digite o nome do aluno");
+            string nomeAlunoAdicionar = Console.ReadLine();
+
+            Console.WriteLine("Digite a idade do aluno");
+            string idadeAlunoAdicionar = Console.ReadLine();
+            int idadeInt = int.Parse(idadeAlunoAdicionar);
+
+            var alunoAdicionar = new Aluno
+            {
+                Nome = nomeAlunoAdicionar,
+                Cpf = cpfAlunoAdicionar,
+                Idade = idadeInt
+            };
+            
+            alunos.Add(alunoAdicionar);
+
+            Console.WriteLine($"Aluno {nomeAlunoAdicionar} foi adicionado com sucesso");
+
+            break;
+        case "2":
+            Console.WriteLine("Digite o nome do aluno a ser removido");
+            string cpfAlunoRemover = Console.ReadLine();
+
+            var alunoRemover = alunos.Find(a => a.Cpf.Equals(cpfAlunoRemover, StringComparison.OrdinalIgnoreCase));
+
+            if (alunoRemover != null)
+            {
+                alunos.Remove(alunoRemover);
+                Console.WriteLine($"Aluno {alunoRemover} foi removido");
+            }
+            else
+            {
+                Console.WriteLine($"Aluno {alunoRemover} não foi encontrado");
+            }
+
+            break;
+        case "3":
+            Console.WriteLine("\n---------- Lista de alunos ----------");
+            foreach (var aluno in alunos)
+            {
+                Console.WriteLine($"Aluno: {aluno.Nome} - Idade: {aluno.Nome} - Cpf: {aluno.Cpf}");
+            }
+
+            break;
+        case "0":
+            deveContinuar = false;
+
+            break;
+        default:
+            Console.WriteLine("Opção não é valida!");
+
+            break;
+    }
+}
+
+
+
+
+
