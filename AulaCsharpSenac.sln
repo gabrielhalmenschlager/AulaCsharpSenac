@@ -117,6 +117,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CadastrarAlunos2", "Cadastr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CadastrarAlunos2", "CadastrarAlunos2\CadastrarAlunos2.csproj", "{54154472-20DD-4B3F-BB9A-349DF56F1A2A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CollectionsAndLinq", "CollectionsAndLinq", "{C0E5502C-5198-4596-877E-DBD52635AADB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollectionsAndLinq", "CollectionsAndLinq\CollectionsAndLinq.csproj", "{C23ED82F-39D6-4810-934F-88ADBBDA1CD4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -239,6 +243,10 @@ Global
 		{54154472-20DD-4B3F-BB9A-349DF56F1A2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54154472-20DD-4B3F-BB9A-349DF56F1A2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54154472-20DD-4B3F-BB9A-349DF56F1A2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C23ED82F-39D6-4810-934F-88ADBBDA1CD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C23ED82F-39D6-4810-934F-88ADBBDA1CD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C23ED82F-39D6-4810-934F-88ADBBDA1CD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C23ED82F-39D6-4810-934F-88ADBBDA1CD4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -285,6 +293,7 @@ Global
 		{40DE330F-0BD9-4AF3-967F-E579734FF682} = {0807DE83-3B1B-4602-B44D-204BCBFFD6A0}
 		{398A12AA-D8DF-404E-A92D-02B237914301} = {10A85048-36CD-4058-B573-EEE1365D55D7}
 		{54154472-20DD-4B3F-BB9A-349DF56F1A2A} = {35B70E0A-EBDE-4605-81D4-2029737A90D8}
+		{C23ED82F-39D6-4810-934F-88ADBBDA1CD4} = {C0E5502C-5198-4596-877E-DBD52635AADB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {01E9BC51-8960-435E-8C89-4179E69888E1}
