@@ -147,8 +147,7 @@ namespace CadastroAlunos
                 return;
             }
 
-            var filtrados = alunos
-                .Where(a => a.Nome.StartsWith(letra, StringComparison.OrdinalIgnoreCase)).ToList();
+            var filtrados = alunos.Where(a => a.Nome.StartsWith(letra, StringComparison.OrdinalIgnoreCase)).OrderBy(a => a.Nome).ToList();
 
             if (!filtrados.Any())
             {
@@ -156,7 +155,7 @@ namespace CadastroAlunos
                 return;
             }
 
-            Console.WriteLine($"\nAlunos com a letra '{char.ToUpper(letra[0])}':");
+            Console.WriteLine($"\nAlunos com a letra {letra}':");
 
             var alunosResponse = filtrados.Select(a => new AlunoResponse
             {
@@ -169,6 +168,7 @@ namespace CadastroAlunos
                 Console.WriteLine($"- Nome: {aluno.Nome}, Idade: {aluno.Idade}");
             }
         }
+
 
         static void ListarOrdenado()
         {
