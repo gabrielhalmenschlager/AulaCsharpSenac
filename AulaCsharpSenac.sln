@@ -125,6 +125,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CadastroAlunos3", "Cadastro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CadastroAlunos3", "CadastroAlunos3\CadastroAlunos3.csproj", "{E111FE08-2B5B-49E2-B9B3-BFDFFB203E1B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Senac.GerenciamentoVeiculos.Api", "Senac.GerenciamentoVeiculos.Api", "{7B144CDF-3DE4-4F44-9A31-4D2D4A953FD8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senac.GerenciamentoVeiculos.Api", "Senac.GerenciamentoVeiculos.Api\Senac.GerenciamentoVeiculos.Api.csproj", "{9A7D19E0-4B6F-465D-9664-1FEDE32B0E42}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senac.GerenciamentoVeiculos.Domain", "Senac.GerenciamentoVeiculos.Domain\Senac.GerenciamentoVeiculos.Domain.csproj", "{3B43A20F-C6AC-4E2A-8542-39859A77C094}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senac.GerenciamentoVeiculos.Infra.Data", "Senac.GerenciamentoVeiculos.Infra.Data\Senac.GerenciamentoVeiculos.Infra.Data.csproj", "{034964D5-5A15-4859-873C-8CB39CC710B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -255,6 +263,18 @@ Global
 		{E111FE08-2B5B-49E2-B9B3-BFDFFB203E1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E111FE08-2B5B-49E2-B9B3-BFDFFB203E1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E111FE08-2B5B-49E2-B9B3-BFDFFB203E1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A7D19E0-4B6F-465D-9664-1FEDE32B0E42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A7D19E0-4B6F-465D-9664-1FEDE32B0E42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A7D19E0-4B6F-465D-9664-1FEDE32B0E42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A7D19E0-4B6F-465D-9664-1FEDE32B0E42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B43A20F-C6AC-4E2A-8542-39859A77C094}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B43A20F-C6AC-4E2A-8542-39859A77C094}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B43A20F-C6AC-4E2A-8542-39859A77C094}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B43A20F-C6AC-4E2A-8542-39859A77C094}.Release|Any CPU.Build.0 = Release|Any CPU
+		{034964D5-5A15-4859-873C-8CB39CC710B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{034964D5-5A15-4859-873C-8CB39CC710B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{034964D5-5A15-4859-873C-8CB39CC710B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{034964D5-5A15-4859-873C-8CB39CC710B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -303,6 +323,9 @@ Global
 		{54154472-20DD-4B3F-BB9A-349DF56F1A2A} = {35B70E0A-EBDE-4605-81D4-2029737A90D8}
 		{C23ED82F-39D6-4810-934F-88ADBBDA1CD4} = {C0E5502C-5198-4596-877E-DBD52635AADB}
 		{E111FE08-2B5B-49E2-B9B3-BFDFFB203E1B} = {5C1ABF14-A9CB-4D08-8004-B2943EFFC1A1}
+		{9A7D19E0-4B6F-465D-9664-1FEDE32B0E42} = {7B144CDF-3DE4-4F44-9A31-4D2D4A953FD8}
+		{3B43A20F-C6AC-4E2A-8542-39859A77C094} = {7B144CDF-3DE4-4F44-9A31-4D2D4A953FD8}
+		{034964D5-5A15-4859-873C-8CB39CC710B6} = {7B144CDF-3DE4-4F44-9A31-4D2D4A953FD8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {01E9BC51-8960-435E-8C89-4179E69888E1}
