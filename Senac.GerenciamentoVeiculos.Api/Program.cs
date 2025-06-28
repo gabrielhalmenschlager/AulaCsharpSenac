@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IDbConnectionFactory>(_ =>
     new DbConnectionFactory(
-        "Server=localhost,1433;Database=gerenciamento_veiculo;User Id=sa;Password=Admin123!;TrustServerCertificate=True;")
+        "Server=(localdb)\\MSSQLLocalDB; Database=gerenciamento_veiculo; Trusted_Connection=True;")
     );
 
 builder.Services.AddScoped<ICarroService, CarroService>();
