@@ -1,12 +1,11 @@
-﻿namespace Senac.GerenciamentoVeiculos.Domain.Models
+﻿namespace Senac.GerenciamentoVeiculos.Domain.Models;
+
+public enum TipoCombustivel
 {
-    public enum TipoCombustivel
-    {
-        GASOLINA,
-        DIESEL,
-        ETANOL,
-        GNV,
-        HIBRIDO,
-        ELETRICO
-    }
+    GASOLINA,
+    DIESEL,
+    ETANOL,
+    GNV,
+    HIBRIDO,
+    ELETRICO
 }

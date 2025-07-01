@@ -2,27 +2,32 @@
 using Senac.GerenciamentoVeiculos.Domain.Services;
 using Senac.GerenciamentoVeiculos.Infra.Data.Repositories;
 
-namespace Senac.GerenciamentoVeiculos.Api.Controllers
+namespace Senac.GerenciamentoVeiculos.Api.Controllers;
+
+[ApiController]
+[Route("carro")]
+public class CarroController : Controller
 {
-    [ApiController]
-    [Route("carro")]
-    public class CarroController : Controller
+    private readonly ICarroService _carroService;
+
+    public CarroController(ICarroService carroService)
     {
-        private readonly ICarroService _carroService;
+        _carroService = carroService;
+    }
 
-        public CarroController(ICarroService carroService)
-        {
-            _carroService = carroService;
-        }
+    [HttpGet]
+    public async Task<IActionResult> ObterTodos()
+    {
+        var carroResponse = await _carroService.ObterTodos();
 
-        [HttpGet]
-        public async Task<IActionResult> ObterTodos()
-        {
-            var carros = await _carroService.ObterTodos();
+        return Ok(carroResponse);
+    }
 
-            var carroResponse = await _carroService.ObterTodos();
+    [HttpGet("{id}")]
+    public async Task<IActionResult> ObterDetalhadoPorId([FromRoute] long id)
+    {
+        var carroDetalhadoResponse = await _carroService.ObterDetalhadoPorId(id);
 
-            return Ok(carroResponse);
-        }
+        return Ok(carroDetalhadoResponse);
     }
 }

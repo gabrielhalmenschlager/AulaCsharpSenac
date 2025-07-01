@@ -1,9 +1,9 @@
 ﻿using Senac.GerenciamentoVeiculos.Domain.Dtos.Responses.Carro;
 
-namespace Senac.GerenciamentoVeiculos.Domain.Services
+namespace Senac.GerenciamentoVeiculos.Domain.Services;
+
+public interface ICarroService
 {
-    public interface ICarroService
-    {
-        Task<IEnumerable<ObterTodosResponse>> ObterTodos();
-    }
+    Task<IEnumerable<ObterTodosResponse>> ObterTodos();
+    Task<ObterDetalhadoPorIdResponse> ObterDetalhadoPorId(long id);
 }

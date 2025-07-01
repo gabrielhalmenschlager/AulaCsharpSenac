@@ -1,20 +1,19 @@
 ﻿using System.Data;
 using Microsoft.Data.SqlClient;
 
-namespace Senac.GerenciamentoVeiculos.Infra.Data.DataBaseConfiguration
+namespace Senac.GerenciamentoVeiculos.Infra.Data.DataBaseConfiguration;
+
+public class DbConnectionFactory : IDbConnectionFactory
 {
-    public class DbConnectionFactory : IDbConnectionFactory
+    private readonly string _connectionString;
+
+    public DbConnectionFactory(string connectionString)
     {
-        private readonly string _connectionString;
+        _connectionString = connectionString;
+    }
 
-        public DbConnectionFactory(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
-
-        public IDbConnection CreateConnection()
-        {
-            return new SqlConnection(_connectionString);
-        }
+    public IDbConnection CreateConnection()
+    {
+        return new SqlConnection(_connectionString);
     }
 }

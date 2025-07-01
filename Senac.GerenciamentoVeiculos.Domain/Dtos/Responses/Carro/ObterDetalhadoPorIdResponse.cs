@@ -1,8 +1,8 @@
 ﻿using Senac.GerenciamentoVeiculos.Domain.Models;
 
-namespace Senac.GerenciamentoVeiculos.Domain.Models;
+namespace Senac.GerenciamentoVeiculos.Domain.Dtos.Responses.Carro;
 
-public class Carro
+public class ObterDetalhadoPorIdResponse
 {
     public long Id { get; set; }
 
@@ -13,6 +13,7 @@ public class Carro
     public string Placa { get; set; }
 
     public string Cor { get; set; }
+
     public int AnoFabricacao { get; set; }
 
     public TipoCombustivel TipoCombustivel { get; set; }

@@ -1,9 +1,10 @@
 ﻿using Senac.GerenciamentoVeiculos.Domain.Models;
 
-namespace Senac.GerenciamentoVeiculos.Domain.Repositories
+namespace Senac.GerenciamentoVeiculos.Domain.Repositories;
+
+public interface ICarroRepository
 {
-    public interface ICarroRepository
-    {
-        Task<IEnumerable<Carro>> ObterTodos();
-    }
+    Task<IEnumerable<Carro>> ObterTodos();
+    Task<Carro> ObterDetalhadoPorId(long id);
+
 }

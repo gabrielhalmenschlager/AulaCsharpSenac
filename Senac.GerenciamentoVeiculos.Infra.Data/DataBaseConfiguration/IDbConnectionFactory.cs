@@ -1,9 +1,8 @@
 ﻿using System.Data;
 
-namespace Senac.GerenciamentoVeiculos.Infra.Data.DataBaseConfiguration
+namespace Senac.GerenciamentoVeiculos.Infra.Data.DataBaseConfiguration;
+
+public interface IDbConnectionFactory
 {
-    public interface IDbConnectionFactory
-    {
-        IDbConnection CreateConnection();
-    }
+    IDbConnection CreateConnection();
 }
