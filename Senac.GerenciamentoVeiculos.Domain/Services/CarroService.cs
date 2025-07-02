@@ -39,7 +39,7 @@ public class CarroService : ICarroService
             Placa = carros.Placa,
             Cor = carros.Cor,
             AnoFabricacao = carros.AnoFabricacao,
-            TipoCombustivel = carros.TipoCombustivel,
+            TipoCombustivel = carros.TipoCombustivel
         };
         return carrosResponse;
     }

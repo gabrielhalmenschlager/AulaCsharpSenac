@@ -33,17 +33,19 @@ public class CarroRepository : ICarroRepository
             .QueryFirstOrDefaultAsync<Carro>(
             @"
             SELECT 
-                id, 
-                nome, 
-                marca, 
-                placa, 
-                cor, 
-                anoFabricacao,
-                tipoCombustivelId
+                c.id, 
+                c.nome, 
+                c.marca, 
+                c.placa, 
+                c.cor, 
+                c.anoFabricacao,
+                t.Id AS TipoCombustivel
             FROM 
-                carro
+                carro c
+            INNER JOIN 
+                TipoCombustivel t ON t.Id = c.TipoCombustivelId
             WHERE
-                id = @Id",
+                c.id = @Id",
             new
             { 
                 Id = id 
