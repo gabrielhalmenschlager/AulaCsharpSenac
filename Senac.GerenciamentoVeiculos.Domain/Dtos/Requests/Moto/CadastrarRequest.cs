@@ -1,9 +1,7 @@
-﻿namespace Senac.GerenciamentoVeiculos.Domain.Models;
+﻿namespace Senac.GerenciamentoVeiculos.Domain.Dtos.Requests.Moto;
 
-public class Carro
+public class CadastrarRequest
 {
-    public long Id { get; set; }
-
     public string Nome { get; set; }
 
     public string Marca { get; set; }
@@ -14,5 +12,5 @@ public class Carro
 
     public int AnoFabricacao { get; set; }
 
-    public TipoCombustivel TipoCombustivel { get; set; }
+    public string TipoCombustivel { get; set; }
 }

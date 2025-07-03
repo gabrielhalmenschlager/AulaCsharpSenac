@@ -1,6 +1,6 @@
-﻿namespace Senac.GerenciamentoVeiculos.Domain.Models;
+﻿namespace Senac.GerenciamentoVeiculos.Domain.Dtos.Responses.Moto;
 
-public class Carro
+public class ObterDetalhadoPorIdResponse
 {
     public long Id { get; set; }
 
@@ -14,5 +14,5 @@ public class Carro
 
     public int AnoFabricacao { get; set; }
 
-    public TipoCombustivel TipoCombustivel { get; set; }
+    public string TipoCombustivel { get; set; }
 }

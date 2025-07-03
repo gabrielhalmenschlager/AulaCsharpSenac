@@ -1,53 +1,48 @@
-﻿using Senac.GerenciamentoVeiculos.Domain.Dtos.Responses.Carro;
-using Senac.GerenciamentoVeiculos.Domain.Repositories;
-using Senac.GerenciamentoVeiculos.Domain.Dtos.Requests.Carro;
+﻿using Senac.GerenciamentoVeiculos.Domain.Dtos.Requests.Moto;
+using Senac.GerenciamentoVeiculos.Domain.Dtos.Responses.Moto;
 using Senac.GerenciamentoVeiculos.Domain.Models;
+using Senac.GerenciamentoVeiculos.Domain.Repositories;
 
 namespace Senac.GerenciamentoVeiculos.Domain.Services;
 
-public class CarroService : ICarroService
+public class MotoService : IMotoService
 {
-    private readonly ICarroRepository _carroRepository;
-
-    public CarroService(ICarroRepository carroRepository)
-    {
-        _carroRepository = carroRepository;
-    }
+    private readonly IMotoRepository _motoRepository;
 
     public async Task<IEnumerable<ObterTodosResponse>> ObterTodos()
     {
-        var carros = await _carroRepository.ObterTodos();
+        var motos = await _motoRepository.ObterTodos();
 
-        var carrosResponse = carros
+        var motosResponse = motos
             .Select(x => new ObterTodosResponse
             {
                 Id = x.Id,
                 Nome = x.Nome,
             });
 
-        return carrosResponse;
+        return motosResponse;
     }
 
     public async Task<ObterDetalhadoPorIdResponse> ObterDetalhadoPorId(long id)
     {
-        var carros = await _carroRepository.ObterDetalhadoPorId(id);
+        var motos = await _motoRepository.ObterDetalhadoPorId(id);
 
-        if (carros == null)
+        if (motos == null)
         {
             throw new Exception($"Carro com ID {id} não encontrado.");
         }
 
-        var carrosResponse = new ObterDetalhadoPorIdResponse
+        var motosResponse = new ObterDetalhadoPorIdResponse
         {
-            Id = carros.Id,
-            Nome = carros.Nome,
-            Marca = carros.Marca,
-            Placa = carros.Placa,
-            Cor = carros.Cor,
-            AnoFabricacao = carros.AnoFabricacao,
-            TipoCombustivel = carros.TipoCombustivel.ToString()
+            Id = motos.Id,
+            Nome = motos.Nome,
+            Marca = motos.Marca,
+            Placa = motos.Placa,
+            Cor = motos.Cor,
+            AnoFabricacao = motos.AnoFabricacao,
+            TipoCombustivel = motos.TipoCombustivel.ToString()
         };
-        return carrosResponse;
+        return motosResponse;
     }
 
     public Task<CadastrarResponse> Cadastrar(CadastrarRequest cadastrarRequest)
@@ -57,7 +52,7 @@ public class CarroService : ICarroService
         {
             throw new Exception($"Tipo de combustível '{cadastrarRequest.TipoCombustivel}' inválido.");
         }
-        var carro = new Carro
+        var moto = new Moto
         {
             Nome = cadastrarRequest.Nome,
             Marca = cadastrarRequest.Marca,

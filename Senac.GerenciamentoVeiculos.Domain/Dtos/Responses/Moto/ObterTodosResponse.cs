@@ -1,4 +1,4 @@
-﻿namespace Senac.GerenciamentoVeiculos.Domain.Dtos.Responses.Carro;
+﻿namespace Senac.GerenciamentoVeiculos.Domain.Dtos.Responses.Moto;
 
 public class ObterTodosResponse
 {

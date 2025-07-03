@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Senac.GerenciamentoVeiculos.Domain.Dtos.Requests.Carro;
+using Senac.GerenciamentoVeiculos.Domain.Dtos.Requests.Moto;
 using Senac.GerenciamentoVeiculos.Domain.Dtos.Responses;
 using Senac.GerenciamentoVeiculos.Domain.Services;
 using Senac.GerenciamentoVeiculos.Infra.Data.Repositories;
@@ -7,22 +7,22 @@ using Senac.GerenciamentoVeiculos.Infra.Data.Repositories;
 namespace Senac.GerenciamentoVeiculos.Api.Controllers;
 
 [ApiController]
-[Route("carro")]
-public class CarroController : Controller
+[Route("moto")]
+public class MotoController : Controller
 {
-    private readonly ICarroService _carroService;
+    private readonly IMotoService _motoService;
 
-    public CarroController(ICarroService carroService)
+    public MotoController(IMotoService motoService)
     {
-        _carroService = carroService;
+        motoService = motoService;
     }
 
     [HttpGet]
     public async Task<IActionResult> ObterTodos()
     {
-        var carroResponse = await _carroService.ObterTodos();
+        var motoResponse = await _motoService.ObterTodos();
 
-        return Ok(carroResponse);
+        return Ok(motoResponse);
     }
 
     [HttpGet("{id}")]
@@ -30,13 +30,13 @@ public class CarroController : Controller
     {
         try
         {
-            var carroDetalhadoResponse = await _carroService.ObterDetalhadoPorId(id);
+            var motoDetalhadoResponse = await _motoService.ObterDetalhadoPorId(id);
 
-            return Ok(carroDetalhadoResponse);
+            return Ok(motoDetalhadoResponse);
         }
         catch (Exception ex)
         {
-            var response = new ErroResponse 
+            var response = new ErroResponse
             {
                 Mensagem = ex.Message,
             };
@@ -49,7 +49,7 @@ public class CarroController : Controller
     {
         try
         {
-            var cadastrarResponse = await _carroService.Cadastrar(cadastrarRequest);
+            var cadastrarResponse = await _motoService.Cadastrar(cadastrarRequest);
             return Ok(cadastrarResponse);
         }
         catch (Exception ex)

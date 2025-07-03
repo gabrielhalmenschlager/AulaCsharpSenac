@@ -1,11 +1,11 @@
 ﻿namespace Senac.GerenciamentoVeiculos.Domain.Models;
 
-public class Carro
+public class Moto
 {
     public long Id { get; set; }
 
-    public string Nome { get; set; }
-
+    public string Nome { get; set; } 
+    
     public string Marca { get; set; }
 
     public string Placa { get; set; }

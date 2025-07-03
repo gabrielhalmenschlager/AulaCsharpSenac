@@ -1,9 +1,9 @@
-﻿namespace Senac.GerenciamentoVeiculos.Domain.Dtos.Responses.Carro;
+﻿using Senac.GerenciamentoVeiculos.Domain.Models;
 
-public class ObterDetalhadoPorIdResponse
+namespace Senac.GerenciamentoVeiculos.Domain.Dtos.Requests.Carro;
+
+public class CadastrarRequest
 {
-    public long Id { get; set; }
-
     public string Nome { get; set; }
 
     public string Marca { get; set; }
