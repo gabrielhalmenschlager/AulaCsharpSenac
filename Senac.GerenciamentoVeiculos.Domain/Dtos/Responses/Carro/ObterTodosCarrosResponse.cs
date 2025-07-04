@@ -1,6 +1,6 @@
 ﻿namespace Senac.GerenciamentoVeiculos.Domain.Dtos.Responses.Carro;
 
-public class ObterTodosResponse
+public class ObterTodosCarrosResponse
 {
     public long Id { get; set; }
 

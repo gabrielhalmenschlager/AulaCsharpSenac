@@ -15,10 +15,10 @@ public class MotoRepository : IMotoRepository
         _connectionFactory = connectionFactory;
     }
 
-    public async Task<IEnumerable<Carro>> ObterTodos()
+    public async Task<IEnumerable<Moto>> ObterTodos()
     {
         return await _connectionFactory.CreateConnection()
-            .QueryAsync<Carro>(
+            .QueryAsync<Moto>(
             @"
                 SELECT 
                     id, 
@@ -43,7 +43,7 @@ public class MotoRepository : IMotoRepository
             FROM 
                 moto m
             INNER JOIN 
-                TipoCombustivel t ON t.Id = c.TipoCombustivelId
+                TipoCombustivel t ON t.Id = m.TipoCombustivelId
             WHERE
                 m.id = @Id",
             new

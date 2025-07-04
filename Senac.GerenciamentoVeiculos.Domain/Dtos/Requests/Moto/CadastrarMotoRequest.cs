@@ -1,6 +1,6 @@
-﻿namespace Senac.GerenciamentoVeiculos.Domain.Dtos.Responses.Carro;
+﻿namespace Senac.GerenciamentoVeiculos.Domain.Dtos.Requests.Moto;
 
-public class CadastrarResponse
+public class CadastrarMotoRequest
 {
     public string Nome { get; set; }
 

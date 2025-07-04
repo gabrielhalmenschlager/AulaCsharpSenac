@@ -5,7 +5,7 @@ namespace Senac.GerenciamentoVeiculos.Domain.Services;
 
 public interface ICarroService
 {
-    Task<IEnumerable<ObterTodosResponse>> ObterTodos();
-    Task<ObterDetalhadoPorIdResponse> ObterDetalhadoPorId(long id);
-    Task<CadastrarResponse> Cadastrar(CadastrarRequest cadastrarRequest);
+    Task<IEnumerable<ObterTodosCarrosResponse>> ObterTodos();
+    Task<ObterCarroDetalhadoPorIdResponse> ObterDetalhadoPorId(long id);
+    Task<CadastrarCarroResponse> Cadastrar(CadastrarCarroRequest cadastrarRequest);
 }

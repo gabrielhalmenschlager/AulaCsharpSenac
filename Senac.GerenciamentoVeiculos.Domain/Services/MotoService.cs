@@ -9,12 +9,12 @@ public class MotoService : IMotoService
 {
     private readonly IMotoRepository _motoRepository;
 
-    public async Task<IEnumerable<ObterTodosResponse>> ObterTodos()
+    public async Task<IEnumerable<ObterTodasMotosResponse>> ObterTodos()
     {
         var motos = await _motoRepository.ObterTodos();
 
         var motosResponse = motos
-            .Select(x => new ObterTodosResponse
+            .Select(x => new ObterTodasMotosResponse
             {
                 Id = x.Id,
                 Nome = x.Nome,
@@ -23,7 +23,7 @@ public class MotoService : IMotoService
         return motosResponse;
     }
 
-    public async Task<ObterDetalhadoPorIdResponse> ObterDetalhadoPorId(long id)
+    public async Task<ObterMotoDetalhadoPorIdResponse> ObterDetalhadoPorId(long id)
     {
         var motos = await _motoRepository.ObterDetalhadoPorId(id);
 
@@ -32,7 +32,7 @@ public class MotoService : IMotoService
             throw new Exception($"Carro com ID {id} não encontrado.");
         }
 
-        var motosResponse = new ObterDetalhadoPorIdResponse
+        var motosResponse = new ObterMotoDetalhadoPorIdResponse
         {
             Id = motos.Id,
             Nome = motos.Nome,
@@ -45,7 +45,7 @@ public class MotoService : IMotoService
         return motosResponse;
     }
 
-    public Task<CadastrarResponse> Cadastrar(CadastrarRequest cadastrarRequest)
+    public Task<CadastrarMotoResponse> Cadastrar(CadastrarMotoRequest cadastrarRequest)
     {
         bool IsTipoCombustivelValido = Enum.TryParse(cadastrarRequest.TipoCombustivel, out TipoCombustivel tipoCombustivel);
         if (!IsTipoCombustivelValido)

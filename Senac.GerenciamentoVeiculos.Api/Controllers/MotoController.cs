@@ -2,7 +2,6 @@
 using Senac.GerenciamentoVeiculos.Domain.Dtos.Requests.Moto;
 using Senac.GerenciamentoVeiculos.Domain.Dtos.Responses;
 using Senac.GerenciamentoVeiculos.Domain.Services;
-using Senac.GerenciamentoVeiculos.Infra.Data.Repositories;
 
 namespace Senac.GerenciamentoVeiculos.Api.Controllers;
 
@@ -14,7 +13,7 @@ public class MotoController : Controller
 
     public MotoController(IMotoService motoService)
     {
-        motoService = motoService;
+        _motoService = motoService;
     }
 
     [HttpGet]
@@ -45,7 +44,7 @@ public class MotoController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Cadastrar([FromBody] CadastrarRequest cadastrarRequest)
+    public async Task<IActionResult> Cadastrar([FromBody] CadastrarMotoRequest cadastrarRequest)
     {
         try
         {

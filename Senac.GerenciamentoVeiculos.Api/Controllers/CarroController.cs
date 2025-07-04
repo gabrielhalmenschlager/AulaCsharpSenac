@@ -2,7 +2,6 @@
 using Senac.GerenciamentoVeiculos.Domain.Dtos.Requests.Carro;
 using Senac.GerenciamentoVeiculos.Domain.Dtos.Responses;
 using Senac.GerenciamentoVeiculos.Domain.Services;
-using Senac.GerenciamentoVeiculos.Infra.Data.Repositories;
 
 namespace Senac.GerenciamentoVeiculos.Api.Controllers;
 
@@ -45,7 +44,7 @@ public class CarroController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Cadastrar([FromBody] CadastrarRequest cadastrarRequest)
+    public async Task<IActionResult> Cadastrar([FromBody] CadastrarCarroRequest cadastrarRequest)
     {
         try
         {
