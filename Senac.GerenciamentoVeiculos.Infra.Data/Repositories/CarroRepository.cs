@@ -32,24 +32,53 @@ public class CarroRepository : ICarroRepository
         return await _connectionFactory.CreateConnection()
             .QueryFirstOrDefaultAsync<Carro>(
             @"
-            SELECT 
-                c.id, 
-                c.nome, 
-                c.marca, 
-                c.placa, 
-                c.cor, 
-                c.anoFabricacao,
-                t.Id AS TipoCombustivel
-            FROM 
-                carro c
-            INNER JOIN 
-                TipoCombustivel t ON t.Id = c.TipoCombustivelId
-            WHERE
-                c.id = @Id",
+                SELECT 
+                    c.id, 
+                    c.nome, 
+                    c.marca, 
+                    c.placa, 
+                    c.cor, 
+                    c.anoFabricacao,
+                    t.Id AS TipoCombustivel
+                FROM 
+                    carro c
+                INNER JOIN 
+                    TipoCombustivel t ON t.Id = c.TipoCombustivelId
+                WHERE
+                    c.id = @Id
+            ",
             new
             { 
                 Id = id 
             }
         );
     }
+
+    public async Task<long> Cadastrar(Carro carro)
+    {
+        return await _connectionFactory.CreateConnection()
+            .QueryFirstOrDefaultAsync<long>(
+            @"
+                INSERT INTO carro
+                (
+                    nome, 
+                    marca, 
+                    placa, 
+                    cor,    
+                    anoFabricacao, 
+                    tipoCombustivelId
+                )
+                OUTPUT INSERTED.id
+                VALUES
+                (
+                    @Nome, 
+                    @Marca, 
+                    @Placa, 
+                    @Cor, 
+                    @AnoFabricacao, 
+                    @TipoCombustivel
+                )
+            ",
+            carro);
+    }   
 }

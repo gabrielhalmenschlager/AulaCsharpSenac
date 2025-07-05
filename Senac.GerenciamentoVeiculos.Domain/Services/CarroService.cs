@@ -50,13 +50,13 @@ public class CarroService : ICarroService
         return carrosResponse;
     }
 
-    public Task<CadastrarCarroResponse> Cadastrar(CadastrarCarroRequest cadastrarRequest)
+    public async Task<CadastrarCarroResponse> Cadastrar(CadastrarCarroRequest cadastrarRequest)
     {
-        bool IsTipoCombustivelValido = Enum.TryParse(cadastrarRequest.TipoCombustivel, out TipoCombustivel tipoCombustivel);
+        bool IsTipoCombustivelValido = Enum.TryParse(cadastrarRequest.TipoCombustivel, ignoreCase: true , out TipoCombustivel tipoCombustivel);
         if (!IsTipoCombustivelValido)
         {
             throw new Exception($"Tipo de combustível '{cadastrarRequest.TipoCombustivel}' inválido.");
-        }
+         }
         var carro = new Carro
         {
             Nome = cadastrarRequest.Nome,
@@ -66,6 +66,20 @@ public class CarroService : ICarroService
             AnoFabricacao = cadastrarRequest.AnoFabricacao,
             TipoCombustivel = tipoCombustivel
         };
-        return null;
+
+        long idResponse = await _carroRepository.Cadastrar(carro);
+
+        var response = new CadastrarCarroResponse
+        {
+            Id = idResponse,
+            Nome = carro.Nome,
+            Marca = carro.Marca,
+            Placa = carro.Placa,
+            Cor = carro.Cor,
+            AnoFabricacao = carro.AnoFabricacao,
+            TipoCombustivel = carro.TipoCombustivel.ToString()
+        };
+
+        return response;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Senac.GerenciamentoVeiculos.Domain.Dtos.Requests.Moto;
+using Senac.GerenciamentoVeiculos.Domain.Dtos.Responses.Carro;
 using Senac.GerenciamentoVeiculos.Domain.Dtos.Responses.Moto;
 using Senac.GerenciamentoVeiculos.Domain.Models;
 using Senac.GerenciamentoVeiculos.Domain.Repositories;
@@ -45,7 +46,7 @@ public class MotoService : IMotoService
         return motosResponse;
     }
 
-    public Task<CadastrarMotoResponse> Cadastrar(CadastrarMotoRequest cadastrarRequest)
+    public async Task<CadastrarMotoResponse> Cadastrar(CadastrarMotoRequest cadastrarRequest)
     {
         bool IsTipoCombustivelValido = Enum.TryParse(cadastrarRequest.TipoCombustivel, out TipoCombustivel tipoCombustivel);
         if (!IsTipoCombustivelValido)
@@ -61,6 +62,20 @@ public class MotoService : IMotoService
             AnoFabricacao = cadastrarRequest.AnoFabricacao,
             TipoCombustivel = tipoCombustivel
         };
-        return null;
+
+        long idResponse = await _motoRepository.Cadastrar(moto);
+
+        var response = new CadastrarMotoResponse
+        {
+            Id = idResponse,
+            Nome = moto.Nome,
+            Marca = moto.Marca,
+            Placa = moto.Placa,
+            Cor = moto.Cor,
+            AnoFabricacao = moto.AnoFabricacao,
+            TipoCombustivel = moto.TipoCombustivel.ToString()
+        };
+
+        return response;
     }
 }

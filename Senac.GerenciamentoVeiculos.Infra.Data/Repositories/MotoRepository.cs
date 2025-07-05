@@ -52,4 +52,32 @@ public class MotoRepository : IMotoRepository
             }
         );
     }
+
+    public async Task<long> Cadastrar(Moto moto)
+    {
+        return await _connectionFactory.CreateConnection()
+            .QueryFirstOrDefaultAsync<long>(
+            @"
+                INSERT INTO moto
+                (
+                    nome, 
+                    marca, 
+                    placa, 
+                    cor, 
+                    anoFabricacao, 
+                    TipoCombustivelId
+                )
+                OUTPUT INSERTED.id                
+                VALUES
+                (
+                    @Nome, 
+                    @Marca, 
+                    @Placa, 
+                    @Cor, 
+                    @AnoFabricacao, 
+                    @TipoCombustivel
+                )
+            ",
+            moto);
+    }
 }
