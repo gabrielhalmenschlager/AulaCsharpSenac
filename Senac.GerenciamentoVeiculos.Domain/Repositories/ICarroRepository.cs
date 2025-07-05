@@ -7,4 +7,5 @@ public interface ICarroRepository
     Task<IEnumerable<Carro>> ObterTodos();
     Task<Carro> ObterDetalhadoPorId(long id);
     Task<long> Cadastrar(Carro carro);
+    Task DeletarPorId(long id);
 }

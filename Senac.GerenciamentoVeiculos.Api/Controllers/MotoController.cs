@@ -35,11 +35,11 @@ public class MotoController : Controller
         }
         catch (Exception ex)
         {
-            var response = new ErroResponse
+            var erroResponse = new ErroResponse
             {
                 Mensagem = ex.Message,
             };
-            return NotFound(response);
+            return NotFound(erroResponse);
         }
     }
 
@@ -53,11 +53,29 @@ public class MotoController : Controller
         }
         catch (Exception ex)
         {
-            var response = new ErroResponse
+            var erroResponse = new ErroResponse
             {
                 Mensagem = ex.Message,
             };
-            return NotFound(response);
+            return BadRequest(erroResponse);
+        }
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeletarPorId([FromBody] long id)
+    {
+        try
+        {
+            var deletarResponse = await _motoService.DeletarPorId(id);
+            return Ok(deletarResponse);
+        }
+        catch (Exception ex)
+        {
+            var erroResponse = new ErroResponse
+            {
+                Mensagem = ex.Message,
+            };
+            return BadRequest(erroResponse);
         }
     }
 }

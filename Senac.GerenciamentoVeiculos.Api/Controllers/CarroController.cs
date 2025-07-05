@@ -60,4 +60,22 @@ public class CarroController : Controller
             return NotFound(response);
         }
     }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeletarPorId([FromBody] long id)
+    {
+        try
+        {
+            await _carroService.DeletarPorId(id);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            var erroResponse = new ErroResponse
+            {
+                Mensagem = ex.Message,
+            };
+            return BadRequest(erroResponse);
+        }
+    }
 }

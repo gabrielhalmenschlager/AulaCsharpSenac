@@ -48,16 +48,14 @@ public class CarroRepository : ICarroRepository
                     c.id = @Id
             ",
             new
-            { 
-                Id = id 
-            }
+            { Id = id }
         );
     }
 
     public async Task<long> Cadastrar(Carro carro)
     {
         return await _connectionFactory.CreateConnection()
-            .QueryFirstOrDefaultAsync<long>(
+            .QueryFirstOrDefaultAsync(
             @"
                 INSERT INTO carro
                 (
@@ -80,5 +78,18 @@ public class CarroRepository : ICarroRepository
                 )
             ",
             carro);
-    }   
+    }
+
+    public async Task DeletarPorId(long id)
+    {
+        await _connectionFactory.CreateConnection()
+            .QueryFirstOrDefaultAsync(
+            @"
+                DELETE 
+                FROM carro
+                WHERE id = @Id
+            ",
+            new { Id = id }
+            );
+    }
 }

@@ -82,4 +82,16 @@ public class CarroService : ICarroService
 
         return response;
     }
+
+    public async Task DeletarPorId(long id)
+    {
+        var carros = await _carroRepository.ObterDetalhadoPorId(id);
+
+        if (carros == null)
+        {
+            throw new Exception($"Não foi possivel deletar o carro com o id {id}");
+        }
+
+        await _carroRepository.DeletarPorId(id);
+    }
 }

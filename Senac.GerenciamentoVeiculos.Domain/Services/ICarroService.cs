@@ -8,4 +8,5 @@ public interface ICarroService
     Task<IEnumerable<ObterTodosCarrosResponse>> ObterTodos();
     Task<ObterCarroDetalhadoPorIdResponse> ObterDetalhadoPorId(long id);
     Task<CadastrarCarroResponse> Cadastrar(CadastrarCarroRequest cadastrarRequest);
+    Task DeletarPorId(long id);
 }
