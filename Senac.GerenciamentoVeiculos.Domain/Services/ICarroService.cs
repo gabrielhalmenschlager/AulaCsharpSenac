@@ -9,4 +9,5 @@ public interface ICarroService
     Task<ObterCarroDetalhadoPorIdResponse> ObterDetalhadoPorId(long id);
     Task<CadastrarCarroResponse> Cadastrar(CadastrarCarroRequest cadastrarRequest);
     Task DeletarPorId(long id);
+    Task AtualizarPorId(long id, AtualizarCarroRequest atualizarCarroRequest);
 }

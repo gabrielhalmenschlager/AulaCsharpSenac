@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Senac.GerenciamentoVeiculos.Domain.Dtos.Requests.Carro;
 using Senac.GerenciamentoVeiculos.Domain.Dtos.Responses;
+using Senac.GerenciamentoVeiculos.Domain.Models;
 using Senac.GerenciamentoVeiculos.Domain.Services;
 
 namespace Senac.GerenciamentoVeiculos.Api.Controllers;
@@ -67,6 +68,24 @@ public class CarroController : Controller
         try
         {
             await _carroService.DeletarPorId(id);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            var erroResponse = new ErroResponse
+            {
+                Mensagem = ex.Message,
+            };
+            return BadRequest(erroResponse);
+        }
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> AtualizarPorId([FromRoute] long id, [FromBody] AtualizarCarroRequest atualizarCarroRequest)
+    {
+        try
+        {
+            await _carroService.AtualizarPorId(id, atualizarCarroRequest);
             return Ok();
         }
         catch (Exception ex)
