@@ -66,8 +66,8 @@ public class MotoController : Controller
     {
         try
         {
-            var deletarResponse = await _motoService.DeletarPorId(id);
-            return Ok(deletarResponse);
+            await _motoService.DeletarPorId(id);
+            return Ok();
         }
         catch (Exception ex)
         {

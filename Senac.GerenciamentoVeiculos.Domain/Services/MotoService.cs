@@ -1,5 +1,4 @@
 ﻿using Senac.GerenciamentoVeiculos.Domain.Dtos.Requests.Moto;
-using Senac.GerenciamentoVeiculos.Domain.Dtos.Responses.Carro;
 using Senac.GerenciamentoVeiculos.Domain.Dtos.Responses.Moto;
 using Senac.GerenciamentoVeiculos.Domain.Models;
 using Senac.GerenciamentoVeiculos.Domain.Repositories;
@@ -9,6 +8,11 @@ namespace Senac.GerenciamentoVeiculos.Domain.Services;
 public class MotoService : IMotoService
 {
     private readonly IMotoRepository _motoRepository;
+
+    public MotoService(IMotoRepository motoRepository)
+    {
+        _motoRepository = motoRepository;
+    }
 
     public async Task<IEnumerable<ObterTodasMotosResponse>> ObterTodos()
     {
@@ -30,7 +34,7 @@ public class MotoService : IMotoService
 
         if (motos == null)
         {
-            throw new Exception($"Carro com ID {id} não encontrado.");
+            throw new Exception($"Moto com ID {id} não encontrado.");
         }
 
         var motosResponse = new ObterMotoDetalhadoPorIdResponse
@@ -77,5 +81,16 @@ public class MotoService : IMotoService
         };
 
         return response;
+    }
+    public async Task DeletarPorId(long id)
+    {
+        var carros = await _motoRepository.ObterDetalhadoPorId(id);
+
+        if (carros == null)
+        {
+            throw new Exception($"Não foi possivel deletar o carro com o id {id}");
+        }
+
+        await _motoRepository.DeletarPorId(id);
     }
 }

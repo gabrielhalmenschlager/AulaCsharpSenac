@@ -1,73 +1,72 @@
 ﻿using Dapper;
 using Senac.GerenciamentoVeiculos.Domain.Models;
-using Senac.GerenciamentoVeiculos.Domain.Repositories;
 using Senac.GerenciamentoVeiculos.Infra.Data.DataBaseConfiguration;
 
 namespace Senac.GerenciamentoVeiculos.Infra.Data.Repositories;
 
 // Responsavel por conectar com o banco de dados e retornar os dados
-public class MotoRepository : IMotoRepository
+
+public class CaminhaoRepository
 {
     private readonly IDbConnectionFactory _connectionFactory;
 
-    public MotoRepository(IDbConnectionFactory connectionFactory)
+    public CaminhaoRepository(IDbConnectionFactory connectionFactory)
     {
         _connectionFactory = connectionFactory;
     }
 
-    public async Task<IEnumerable<Moto>> ObterTodos()
+    public async Task<IEnumerable<Caminhao>> ObterTodos()
     {
         return await _connectionFactory.CreateConnection()
-            .QueryAsync<Moto>(
+            .QueryAsync<Caminhao>(
             @"
                 SELECT 
                     id, 
                     nome
-                FROM moto"
+                FROM caminhao"
             );
     }
 
-    public async Task<Moto> ObterDetalhadoPorId(long id)
+    public async Task<Caminhao> ObterDetalhadoPorId(long id)
     {
         return await _connectionFactory.CreateConnection()
-            .QueryFirstOrDefaultAsync<Moto>(
+            .QueryFirstOrDefaultAsync<Caminhao>(
             @"
-            SELECT 
-                m.id, 
-                m.nome, 
-                m.marca, 
-                m.placa, 
-                m.cor, 
-                m.anoFabricacao,
-                t.Id AS TipoCombustivel
-            FROM 
-                moto m
-            INNER JOIN 
-                TipoCombustivel t ON t.Id = m.TipoCombustivelId
-            WHERE
-                m.id = @Id",
+                SELECT 
+                    c.id, 
+                    c.nome, 
+                    c.marca, 
+                    c.placa, 
+                    c.cor, 
+                    c.anoFabricacao,
+                    t.Id AS TipoCombustivel
+                FROM 
+                    carro c
+                INNER JOIN 
+                    TipoCombustivel t ON t.Id = c.TipoCombustivelId
+                WHERE
+                    c.id = @Id
+            ",
             new
-            {
-                Id = id
-            }
+            { Id = id }
         );
     }
 
-    public async Task<long> Cadastrar(Moto moto)
+    public async Task<long> Cadastrar(Carro carro)
     {
         return await _connectionFactory.CreateConnection()
-            .QueryFirstOrDefaultAsync<long>(
+            .QueryFirstOrDefaultAsync(
             @"
-                INSERT INTO moto
+                INSERT INTO carro
                 (
                     nome, 
                     marca, 
                     placa, 
-                    cor, 
+                    cor,    
                     anoFabricacao, 
-                    TipoCombustivelId
+                    tipoCombustivelId
                 )
-                OUTPUT INSERTED.id                
+                OUTPUT INSERTED.id
                 VALUES
                 (
                     @Nome, 
@@ -78,7 +77,7 @@ public class MotoRepository : IMotoRepository
                     @TipoCombustivel
                 )
             ",
-            moto);
+            carro);
     }
 
     public async Task DeletarPorId(long id)
@@ -87,7 +86,7 @@ public class MotoRepository : IMotoRepository
             .QueryFirstOrDefaultAsync(
             @"
                 DELETE 
-                FROM moto
+                FROM carro
                 WHERE id = @Id
             ",
             new { Id = id }

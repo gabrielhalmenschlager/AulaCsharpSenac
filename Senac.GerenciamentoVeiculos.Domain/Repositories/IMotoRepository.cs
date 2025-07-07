@@ -7,4 +7,5 @@ public interface IMotoRepository
     Task<IEnumerable<Moto>> ObterTodos();
     Task<Moto> ObterDetalhadoPorId(long id);
     Task<long> Cadastrar(Moto moto);
+    Task DeletarPorId(long id);
 }

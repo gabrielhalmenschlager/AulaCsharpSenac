@@ -8,4 +8,5 @@ public interface IMotoService
     Task<IEnumerable<ObterTodasMotosResponse>> ObterTodos();
     Task<ObterMotoDetalhadoPorIdResponse> ObterDetalhadoPorId(long id);
     Task<CadastrarMotoResponse> Cadastrar(CadastrarMotoRequest cadastrarRequest);
+    Task DeletarPorId(long id);
 }
