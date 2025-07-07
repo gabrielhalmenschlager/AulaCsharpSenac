@@ -1,12 +1,13 @@
 ﻿using Dapper;
 using Senac.GerenciamentoVeiculos.Domain.Models;
+using Senac.GerenciamentoVeiculos.Domain.Repositories;
 using Senac.GerenciamentoVeiculos.Infra.Data.DataBaseConfiguration;
 
 namespace Senac.GerenciamentoVeiculos.Infra.Data.Repositories;
 
 // Responsavel por conectar com o banco de dados e retornar os dados
 
-public class CaminhaoRepository
+public class CaminhaoRepository : ICaminhaoRepository
 {
     private readonly IDbConnectionFactory _connectionFactory;
 
@@ -39,9 +40,11 @@ public class CaminhaoRepository
                     c.placa, 
                     c.cor, 
                     c.anoFabricacao,
-                    t.Id AS TipoCombustivel
+                    t.Id AS TipoCombustivel.
+                    c.CapacidadeCargaToneladas,
+                    c.QuantidadeEixos
                 FROM 
-                    carro c
+                    caminhao c
                 INNER JOIN 
                     TipoCombustivel t ON t.Id = c.TipoCombustivelId
                 WHERE
@@ -52,19 +55,21 @@ public class CaminhaoRepository
         );
     }
 
-    public async Task<long> Cadastrar(Carro carro)
+    public async Task<long> Cadastrar(Caminhao caminhao)
     {
         return await _connectionFactory.CreateConnection()
             .QueryFirstOrDefaultAsync(
             @"
-                INSERT INTO carro
+                INSERT INTO caminhao
                 (
                     nome, 
                     marca, 
                     placa, 
                     cor,    
                     anoFabricacao, 
-                    tipoCombustivelId
+                    tipoCombustivelId,
+                    capacidadeCargaToneladas,
+                    quantidadeEixos
                 )
                 OUTPUT INSERTED.id
                 VALUES
@@ -74,10 +79,12 @@ public class CaminhaoRepository
                     @Placa, 
                     @Cor, 
                     @AnoFabricacao, 
-                    @TipoCombustivel
+                    @TipoCombustivel,
+                    @CapacidadeCargaToneladas,
+                    @QuantidadeEixos
                 )
             ",
-            carro);
+            caminhao);
     }
 
     public async Task DeletarPorId(long id)
@@ -86,7 +93,7 @@ public class CaminhaoRepository
             .QueryFirstOrDefaultAsync(
             @"
                 DELETE 
-                FROM carro
+                FROM caminhao
                 WHERE id = @Id
             ",
             new { Id = id }

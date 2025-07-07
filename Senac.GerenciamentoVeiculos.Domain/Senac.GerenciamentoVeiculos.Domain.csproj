@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Services\ICaminhaoService.cs~RFece97a4b.TMP" />
+  </ItemGroup>
+
 </Project>

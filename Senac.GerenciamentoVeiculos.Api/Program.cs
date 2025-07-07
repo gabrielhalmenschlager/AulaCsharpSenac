@@ -14,6 +14,8 @@ builder.Services.AddScoped<ICarroService, CarroService>();
 builder.Services.AddScoped<ICarroRepository, CarroRepository>();
 builder.Services.AddScoped<IMotoService, MotoService>();
 builder.Services.AddScoped<IMotoRepository, MotoRepository>();
+builder.Services.AddScoped<ICaminhaoService, CaminhaoService>();
+builder.Services.AddScoped<ICaminhaoRepository, CaminhaoRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

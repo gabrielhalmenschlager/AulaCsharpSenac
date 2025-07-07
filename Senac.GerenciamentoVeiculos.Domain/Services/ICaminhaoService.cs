@@ -10,4 +10,3 @@ public interface ICaminhaoService
     Task<CadastrarCaminhaoResponse> Cadastrar(CadastrarCaminhaoRequest cadastrarRequest);
     Task DeletarPorId(long id);
 }
-}
