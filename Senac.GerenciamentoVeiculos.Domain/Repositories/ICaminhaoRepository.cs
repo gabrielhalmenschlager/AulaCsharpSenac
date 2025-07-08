@@ -8,4 +8,6 @@ public interface ICaminhaoRepository
     Task<Caminhao> ObterDetalhadoPorId(long id);
     Task<long> Cadastrar(Caminhao caminhao);
     Task DeletarPorId(long id);
+    Task AtualizarPorId(Caminhao caminhao);
+
 }

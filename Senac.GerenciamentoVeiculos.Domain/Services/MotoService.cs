@@ -1,4 +1,5 @@
-﻿using Senac.GerenciamentoVeiculos.Domain.Dtos.Requests.Moto;
+﻿using Senac.GerenciamentoVeiculos.Domain.Dtos.Requests.Carro;
+using Senac.GerenciamentoVeiculos.Domain.Dtos.Requests.Moto;
 using Senac.GerenciamentoVeiculos.Domain.Dtos.Responses.Moto;
 using Senac.GerenciamentoVeiculos.Domain.Models;
 using Senac.GerenciamentoVeiculos.Domain.Repositories;
@@ -92,5 +93,27 @@ public class MotoService : IMotoService
         }
 
         await _motoRepository.DeletarPorId(id);
+    }
+
+    public async Task AtualizarPorId(long id, AtualizarMotoRequest atualizarMotoRequest)
+    {
+        bool IsTipoCombustivelValido = Enum.TryParse(atualizarMotoRequest.TipoCombustivel, ignoreCase: true, out TipoCombustivel tipoCombustivel);
+        if (!IsTipoCombustivelValido)
+        {
+            throw new Exception($"Tipo de combustível '{atualizarMotoRequest.TipoCombustivel}' inválido.");
+        }
+
+        var moto = await _motoRepository.ObterDetalhadoPorId(id);
+
+        if (moto == null)
+        {
+            throw new Exception($"Carro com ID {id} não encontrado.");
+        }
+
+        moto.Placa = atualizarMotoRequest.Placa;
+        moto.Cor = atualizarMotoRequest.Cor;
+        moto.TipoCombustivel = tipoCombustivel;
+
+        await _motoRepository.AtualizarPorId(moto);
     }
 }

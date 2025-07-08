@@ -8,4 +8,5 @@ public interface ICarroRepository
     Task<Carro> ObterDetalhadoPorId(long id);
     Task<long> Cadastrar(Carro carro);
     Task DeletarPorId(long id);
+    Task AtualizarPorId(Carro carro);
 }

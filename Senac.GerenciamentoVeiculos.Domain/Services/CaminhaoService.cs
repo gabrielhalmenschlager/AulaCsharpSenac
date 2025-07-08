@@ -1,4 +1,5 @@
 ﻿using Senac.GerenciamentoVeiculos.Domain.Dtos.Requests.Caminhao;
+using Senac.GerenciamentoVeiculos.Domain.Dtos.Requests.Carro;
 using Senac.GerenciamentoVeiculos.Domain.Dtos.Responses.Caminhao;
 using Senac.GerenciamentoVeiculos.Domain.Models;
 using Senac.GerenciamentoVeiculos.Domain.Repositories;
@@ -97,5 +98,29 @@ public class CaminhaoService : ICaminhaoService
         }
 
         await _caminhaoRepository.DeletarPorId(id);
+    }
+
+    public async Task AtualizarPorId(long id, AtualizarCaminhaoRequest atualizarCaminhaoRequest)
+    {
+        bool IsTipoCombustivelValido = Enum.TryParse(atualizarCaminhaoRequest.TipoCombustivel, ignoreCase: true, out TipoCombustivel tipoCombustivel);
+        if (!IsTipoCombustivelValido)
+        {
+            throw new Exception($"Tipo de combustível '{atualizarCaminhaoRequest.TipoCombustivel}' inválido.");
+        }
+
+        var caminhao = await _caminhaoRepository.ObterDetalhadoPorId(id);
+
+        if (caminhao == null)
+        {
+            throw new Exception($"Carro com ID {id} não encontrado.");
+        }
+
+        caminhao.Placa = atualizarCaminhaoRequest.Placa;
+        caminhao.Cor = atualizarCaminhaoRequest.Cor;
+        caminhao.TipoCombustivel = tipoCombustivel;
+        caminhao.CapacidadeCargaToneladas = atualizarCaminhaoRequest.CapacidadeCargaToneladas;
+        caminhao.QuantidadeEixos = atualizarCaminhaoRequest.QuantidadeEixos;
+
+        await _caminhaoRepository.AtualizarPorId(caminhao);
     }
 }

@@ -93,4 +93,21 @@ public class MotoRepository : IMotoRepository
             new { Id = id }
             );
     }
+
+    public async Task AtualizarPorId(Moto moto)
+    {
+        await _connectionFactory.CreateConnection()
+            .QueryFirstOrDefaultAsync(
+            @"
+                UPDATE 
+                    moto
+                SET 
+                    placa = @Placa,
+                    cor = @Cor, 
+                    tipoCombustivelId = @TipoCombustivel
+                WHERE 
+                    id = @Id
+            ",
+            moto);
+    }
 }

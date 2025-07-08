@@ -40,7 +40,7 @@ public class CaminhaoRepository : ICaminhaoRepository
                     c.placa, 
                     c.cor, 
                     c.anoFabricacao,
-                    t.Id AS TipoCombustivel.
+                    t.Id AS TipoCombustivel,
                     c.CapacidadeCargaToneladas,
                     c.QuantidadeEixos
                 FROM 

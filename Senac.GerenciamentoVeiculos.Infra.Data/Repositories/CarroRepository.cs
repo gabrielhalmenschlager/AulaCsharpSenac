@@ -92,4 +92,21 @@ public class CarroRepository : ICarroRepository
             new { Id = id }
             );
     }
+
+    public async Task AtualizarPorId(Carro carro)
+    {
+        await _connectionFactory.CreateConnection()
+            .QueryFirstOrDefaultAsync(
+            @"
+                UPDATE 
+                    carro
+                SET 
+                    placa = @Placa,
+                    cor = @Cor, 
+                    tipoCombustivelId = @TipoCombustivel
+                WHERE 
+                    id = @Id
+            ",
+            carro);
+    }
 }

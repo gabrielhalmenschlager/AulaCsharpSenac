@@ -56,7 +56,7 @@ public class CarroService : ICarroService
         if (!IsTipoCombustivelValido)
         {
             throw new Exception($"Tipo de combustível '{cadastrarRequest.TipoCombustivel}' inválido.");
-         }
+        }
         var carro = new Carro
         {
             Nome = cadastrarRequest.Nome,
@@ -93,5 +93,27 @@ public class CarroService : ICarroService
         }
 
         await _carroRepository.DeletarPorId(id);
+    }
+
+    public async Task AtualizarPorId(long id, AtualizarCarroRequest atualizarCarroRequest)
+    {
+        bool IsTipoCombustivelValido = Enum.TryParse(atualizarCarroRequest.TipoCombustivel, ignoreCase: true, out TipoCombustivel tipoCombustivel);
+        if (!IsTipoCombustivelValido)
+        {
+            throw new Exception($"Tipo de combustível '{atualizarCarroRequest.TipoCombustivel}' inválido.");
+        }
+
+        var carro = await _carroRepository.ObterDetalhadoPorId(id);
+
+        if (carro == null)
+        {
+            throw new Exception($"Carro com ID {id} não encontrado.");
+        }
+
+        carro.Placa = atualizarCarroRequest.Placa;
+        carro.Cor = atualizarCarroRequest.Cor;
+        carro.TipoCombustivel = tipoCombustivel;
+    
+        await _carroRepository.AtualizarPorId(carro);
     }
 }

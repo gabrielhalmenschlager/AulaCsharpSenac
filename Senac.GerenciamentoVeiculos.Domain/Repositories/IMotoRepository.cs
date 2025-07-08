@@ -8,4 +8,5 @@ public interface IMotoRepository
     Task<Moto> ObterDetalhadoPorId(long id);
     Task<long> Cadastrar(Moto moto);
     Task DeletarPorId(long id);
+    Task AtualizarPorId(Moto moto);
 }
