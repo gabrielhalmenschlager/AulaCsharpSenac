@@ -79,5 +79,23 @@ namespace Senac.GerenciamentoVeiculos.Api.Controllers
                 return BadRequest(erroResponse);
             }
         }
+        
+        [HttpPut("{id}")]
+        public async Task<IActionResult> AtualizarPorId([FromRoute] long id, [FromBody] AtualizarCaminhaoRequest atualizarCaminhaoRequest)
+        {
+            try
+            {
+                await _caminhaoService.AtualizarPorId(id, atualizarCaminhaoRequest);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                var erroResponse = new ErroResponse
+                {
+                    Mensagem = ex.Message,
+                };
+                return BadRequest(erroResponse);
+            }
+        }
     }
 }

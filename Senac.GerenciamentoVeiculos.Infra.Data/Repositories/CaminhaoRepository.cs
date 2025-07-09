@@ -99,4 +99,23 @@ public class CaminhaoRepository : ICaminhaoRepository
             new { Id = id }
             );
     }
+
+    public async Task AtualizarPorId(Caminhao caminhao)
+    {
+        await _connectionFactory.CreateConnection()
+            .QueryFirstOrDefaultAsync(
+            @"
+                UPDATE 
+                    caminhao
+                SET 
+                    placa = @Placa,
+                    cor = @Cor, 
+                    tipoCombustivelId = @TipoCombustivel,
+                    capacidadeCargaToneladas = @CapacidadeCargaToneladas,
+                    quantidadeEixos = @QuantidadeEixos
+                WHERE 
+                    id = @Id
+            ",
+            caminhao);
+    }
 }
