@@ -1,6 +1,6 @@
 ﻿namespace Senac.GerenciamentoVeiculos.Domain.Models;
 
-public enum TipoCombustivel
+public enum TipoCombustivelCarro
 {
     GASOLINA = 1,
     DIESEL = 2,

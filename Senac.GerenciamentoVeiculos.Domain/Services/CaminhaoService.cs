@@ -55,7 +55,7 @@ public class CaminhaoService : ICaminhaoService
 
     public async Task<CadastrarCaminhaoResponse> Cadastrar(CadastrarCaminhaoRequest cadastrarRequest)
     {
-        bool IsTipoCombustivelValido = Enum.TryParse(cadastrarRequest.TipoCombustivel, ignoreCase: true, out TipoCombustivel tipoCombustivel);
+        bool IsTipoCombustivelValido = Enum.TryParse(cadastrarRequest.TipoCombustivel, ignoreCase: true, out TipoCombustivelCarro tipoCombustivel);
         if (!IsTipoCombustivelValido)
         {
             throw new Exception($"Tipo de combustível '{cadastrarRequest.TipoCombustivel}' inválido.");
@@ -102,7 +102,7 @@ public class CaminhaoService : ICaminhaoService
 
     public async Task AtualizarPorId(long id, AtualizarCaminhaoRequest atualizarCaminhaoRequest)
     {
-        bool IsTipoCombustivelValido = Enum.TryParse(atualizarCaminhaoRequest.TipoCombustivel, ignoreCase: true, out TipoCombustivel tipoCombustivel);
+        bool IsTipoCombustivelValido = Enum.TryParse(atualizarCaminhaoRequest.TipoCombustivel, ignoreCase: true, out TipoCombustivelCarro tipoCombustivel);
         if (!IsTipoCombustivelValido)
         {
             throw new Exception($"Tipo de combustível '{atualizarCaminhaoRequest.TipoCombustivel}' inválido.");
