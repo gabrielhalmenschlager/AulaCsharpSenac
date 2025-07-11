@@ -39,11 +39,11 @@ public class CarroRepository : ICarroRepository
                     c.placa, 
                     c.cor, 
                     c.anoFabricacao,
-                    t.Id AS TipoCombustivel
+                    t.Id AS TipoCombustivelCarro
                 FROM 
                     carro c
                 INNER JOIN 
-                    TipoCombustivel t ON t.Id = c.TipoCombustivelId
+                    TipoCombustivelCarro t ON t.Id = c.TipoCombustivelId
                 WHERE
                     c.id = @Id
             ",
@@ -74,7 +74,7 @@ public class CarroRepository : ICarroRepository
                     @Placa, 
                     @Cor, 
                     @AnoFabricacao, 
-                    @TipoCombustivel
+                    @TipoCombustivelCarro
                 )
             ",
             carro);
@@ -103,7 +103,7 @@ public class CarroRepository : ICarroRepository
                 SET 
                     placa = @Placa,
                     cor = @Cor, 
-                    tipoCombustivelId = @TipoCombustivel
+                    tipoCombustivelId = @TipoCombustivelCarro
                 WHERE 
                     id = @Id
             ",

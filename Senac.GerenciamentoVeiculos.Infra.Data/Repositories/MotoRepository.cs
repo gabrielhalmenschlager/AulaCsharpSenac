@@ -39,11 +39,11 @@ public class MotoRepository : IMotoRepository
                 m.placa, 
                 m.cor, 
                 m.anoFabricacao,
-                t.Id AS TipoCombustivel
+                t.Id AS TipoCombustivelMoto
             FROM 
                 moto m
             INNER JOIN 
-                TipoCombustivel t ON t.Id = m.TipoCombustivelId
+                TipoCombustivelMoto t ON t.Id = m.TipoCombustivelId
             WHERE
                 m.id = @Id",
             new
@@ -75,7 +75,7 @@ public class MotoRepository : IMotoRepository
                     @Placa, 
                     @Cor, 
                     @AnoFabricacao, 
-                    @TipoCombustivel
+                    @TipoCombustivelMoto
                 )
             ",
             moto);
@@ -104,7 +104,7 @@ public class MotoRepository : IMotoRepository
                 SET 
                     placa = @Placa,
                     cor = @Cor, 
-                    tipoCombustivelId = @TipoCombustivel
+                    tipoCombustivelId = @TipoCombustivelMoto
                 WHERE 
                     id = @Id
             ",

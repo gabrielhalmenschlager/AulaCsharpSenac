@@ -14,5 +14,5 @@ public class Carro
 
     public int AnoFabricacao { get; set; }
 
-    public TipoCombustivelCarro TipoCombustivel { get; set; }
+    public TipoCombustivelCarro TipoCombustivelCarro { get; set; }
 }

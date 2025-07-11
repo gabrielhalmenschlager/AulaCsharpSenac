@@ -4,5 +4,5 @@ public class AtualizarCarroRequest
 {
     public string Placa { get; set; }
     public string Cor { get; set; }
-    public string TipoCombustivel { get; set; }
+    public string TipoCombustivelCarro { get; set; }
 }

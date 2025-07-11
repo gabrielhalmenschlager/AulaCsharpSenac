@@ -14,7 +14,7 @@ public class ObterCaminhaoDetalhadoPorIdResponse
 
     public int AnoFabricacao { get; set; }
 
-    public string TipoCombustivel { get; set; }
+    public string TipoCombustivelCaminhao { get; set; }
 
     public decimal CapacidadeCargaToneladas { get; set; }
 

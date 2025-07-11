@@ -153,3 +153,11 @@ VALUES
     ('M2 106',                 'Freightliner',  'MNO0P12', 'Prata',    2021, 1, 12.50, 2);
 
 );
+
+ALTER TABLE Carro
+DROP CONSTRAINT FK__Carro__TipoCombu__267ABA7A;
+
+ALTER TABLE Carro
+ADD CONSTRAINT FK_Carro_TipoCombustivelCarro
+FOREIGN KEY (TipoCombustivelId)
+REFERENCES TipoCombustivelCarro(Id);

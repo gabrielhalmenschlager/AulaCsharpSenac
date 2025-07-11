@@ -14,5 +14,5 @@ public class ObterMotoDetalhadoPorIdResponse
 
     public int AnoFabricacao { get; set; }
 
-    public string TipoCombustivel { get; set; }
+    public string TipoCombustivelMoto { get; set; }
 }

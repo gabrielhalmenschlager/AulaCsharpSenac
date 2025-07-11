@@ -45,17 +45,17 @@ public class CarroService : ICarroService
             Placa = carros.Placa,
             Cor = carros.Cor,
             AnoFabricacao = carros.AnoFabricacao,
-            TipoCombustivel = carros.TipoCombustivel.ToString()
+            TipoCombustivelCarro = carros.TipoCombustivelCarro.ToString()
         };
         return carrosResponse;
     }
 
     public async Task<CadastrarCarroResponse> Cadastrar(CadastrarCarroRequest cadastrarRequest)
     {
-        bool IsTipoCombustivelValido = Enum.TryParse(cadastrarRequest.TipoCombustivel, ignoreCase: true , out TipoCombustivelCarro tipoCombustivel);
+        bool IsTipoCombustivelValido = Enum.TryParse(cadastrarRequest.TipoCombustivelCarro, ignoreCase: true , out TipoCombustivelCarro tipoCombustivelCarro);
         if (!IsTipoCombustivelValido)
         {
-            throw new Exception($"Tipo de combustível '{cadastrarRequest.TipoCombustivel}' inválido.");
+            throw new Exception($"Tipo de combustível '{cadastrarRequest.TipoCombustivelCarro}' inválido.");
         }
         var carro = new Carro
         {
@@ -64,7 +64,7 @@ public class CarroService : ICarroService
             Placa = cadastrarRequest.Placa,
             Cor = cadastrarRequest.Cor,
             AnoFabricacao = cadastrarRequest.AnoFabricacao,
-            TipoCombustivel = tipoCombustivel
+            TipoCombustivelCarro = tipoCombustivelCarro
         };
 
         long idResponse = await _carroRepository.Cadastrar(carro);
@@ -77,7 +77,7 @@ public class CarroService : ICarroService
             Placa = carro.Placa,
             Cor = carro.Cor,
             AnoFabricacao = carro.AnoFabricacao,
-            TipoCombustivel = carro.TipoCombustivel.ToString()
+            TipoCombustivelCarro = carro.TipoCombustivelCarro.ToString()
         };
 
         return response;
@@ -97,10 +97,10 @@ public class CarroService : ICarroService
 
     public async Task AtualizarPorId(long id, AtualizarCarroRequest atualizarCarroRequest)
     {
-        bool IsTipoCombustivelValido = Enum.TryParse(atualizarCarroRequest.TipoCombustivel, ignoreCase: true, out TipoCombustivelCarro tipoCombustivel);
+        bool IsTipoCombustivelValido = Enum.TryParse(atualizarCarroRequest.TipoCombustivelCarro, ignoreCase: true, out TipoCombustivelCarro tipoCombustivelCarro);
         if (!IsTipoCombustivelValido)
         {
-            throw new Exception($"Tipo de combustível '{atualizarCarroRequest.TipoCombustivel}' inválido.");
+            throw new Exception($"Tipo de combustível '{atualizarCarroRequest.TipoCombustivelCarro}' inválido.");
         }
 
         var carro = await _carroRepository.ObterDetalhadoPorId(id);
@@ -112,7 +112,7 @@ public class CarroService : ICarroService
 
         carro.Placa = atualizarCarroRequest.Placa;
         carro.Cor = atualizarCarroRequest.Cor;
-        carro.TipoCombustivel = tipoCombustivel;
+        carro.TipoCombustivelCarro = tipoCombustivelCarro;
     
         await _carroRepository.AtualizarPorId(carro);
     }

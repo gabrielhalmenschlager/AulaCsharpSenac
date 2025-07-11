@@ -40,13 +40,13 @@ public class CaminhaoRepository : ICaminhaoRepository
                     c.placa, 
                     c.cor, 
                     c.anoFabricacao,
-                    t.Id AS TipoCombustivel,
+                    t.Id AS TipoCombustivelCaminhao,
                     c.CapacidadeCargaToneladas,
                     c.QuantidadeEixos
                 FROM 
                     caminhao c
                 INNER JOIN 
-                    TipoCombustivel t ON t.Id = c.TipoCombustivelId
+                    TipoCombustivelCaminhao t ON t.Id = c.TipoCombustivelId
                 WHERE
                     c.id = @Id
             ",
@@ -79,7 +79,7 @@ public class CaminhaoRepository : ICaminhaoRepository
                     @Placa, 
                     @Cor, 
                     @AnoFabricacao, 
-                    @TipoCombustivel,
+                    @TipoCombustivelCaminhao,
                     @CapacidadeCargaToneladas,
                     @QuantidadeEixos
                 )
@@ -110,7 +110,7 @@ public class CaminhaoRepository : ICaminhaoRepository
                 SET 
                     placa = @Placa,
                     cor = @Cor, 
-                    tipoCombustivelId = @TipoCombustivel,
+                    tipoCombustivelId = @TipoCombustivelCaminhao,
                     capacidadeCargaToneladas = @CapacidadeCargaToneladas,
                     quantidadeEixos = @QuantidadeEixos
                 WHERE 

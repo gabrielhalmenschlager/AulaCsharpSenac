@@ -14,7 +14,7 @@ public class Caminhao
 
     public int AnoFabricacao { get; set; }
 
-    public TipoCombustivelCarro TipoCombustivel { get; set; }
+    public TipoCombustivelCaminhao TipoCombustivelCaminhao { get; set; }
 
     public decimal CapacidadeCargaToneladas { get; set; }
 

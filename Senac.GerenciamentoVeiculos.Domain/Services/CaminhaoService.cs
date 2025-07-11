@@ -46,7 +46,7 @@ public class CaminhaoService : ICaminhaoService
             Placa = caminhoes.Placa,
             Cor = caminhoes.Cor,
             AnoFabricacao = caminhoes.AnoFabricacao,
-            TipoCombustivel = caminhoes.TipoCombustivel.ToString(),
+            TipoCombustivelCaminhao = caminhoes.TipoCombustivelCaminhao.ToString(),
             CapacidadeCargaToneladas = caminhoes.CapacidadeCargaToneladas,
             QuantidadeEixos = caminhoes.QuantidadeEixos
         };
@@ -55,10 +55,10 @@ public class CaminhaoService : ICaminhaoService
 
     public async Task<CadastrarCaminhaoResponse> Cadastrar(CadastrarCaminhaoRequest cadastrarRequest)
     {
-        bool IsTipoCombustivelValido = Enum.TryParse(cadastrarRequest.TipoCombustivel, ignoreCase: true, out TipoCombustivelCarro tipoCombustivel);
+        bool IsTipoCombustivelValido = Enum.TryParse(cadastrarRequest.TipoCombustivelCaminhao, ignoreCase: true, out TipoCombustivelCaminhao tipoCombustivelCaminhao);
         if (!IsTipoCombustivelValido)
         {
-            throw new Exception($"Tipo de combustível '{cadastrarRequest.TipoCombustivel}' inválido.");
+            throw new Exception($"Tipo de combustível '{cadastrarRequest.TipoCombustivelCaminhao}' inválido.");
         }
         var caminhao = new Caminhao
         {
@@ -67,7 +67,7 @@ public class CaminhaoService : ICaminhaoService
             Placa = cadastrarRequest.Placa,
             Cor = cadastrarRequest.Cor,
             AnoFabricacao = cadastrarRequest.AnoFabricacao,
-            TipoCombustivel = tipoCombustivel,
+            TipoCombustivelCaminhao = tipoCombustivelCaminhao,
             CapacidadeCargaToneladas = cadastrarRequest.CapacidadeCargaToneladas,
             QuantidadeEixos = cadastrarRequest.QuantidadeEixos
         };
@@ -82,7 +82,7 @@ public class CaminhaoService : ICaminhaoService
             Placa = caminhao.Placa,
             Cor = caminhao.Cor,
             AnoFabricacao = caminhao.AnoFabricacao,
-            TipoCombustivel = caminhao.TipoCombustivel.ToString()
+            TipoCombustivelCaminhao = caminhao.TipoCombustivelCaminhao.ToString()
         };
 
         return response;
@@ -102,10 +102,10 @@ public class CaminhaoService : ICaminhaoService
 
     public async Task AtualizarPorId(long id, AtualizarCaminhaoRequest atualizarCaminhaoRequest)
     {
-        bool IsTipoCombustivelValido = Enum.TryParse(atualizarCaminhaoRequest.TipoCombustivel, ignoreCase: true, out TipoCombustivelCarro tipoCombustivel);
+        bool IsTipoCombustivelValido = Enum.TryParse(atualizarCaminhaoRequest.TipoCombustivelCaminhao, ignoreCase: true, out TipoCombustivelCaminhao tipoCombustivelCaminhao);
         if (!IsTipoCombustivelValido)
         {
-            throw new Exception($"Tipo de combustível '{atualizarCaminhaoRequest.TipoCombustivel}' inválido.");
+            throw new Exception($"Tipo de combustível '{atualizarCaminhaoRequest.TipoCombustivelCaminhao}' inválido.");
         }
 
         var caminhao = await _caminhaoRepository.ObterDetalhadoPorId(id);
@@ -117,7 +117,7 @@ public class CaminhaoService : ICaminhaoService
 
         caminhao.Placa = atualizarCaminhaoRequest.Placa;
         caminhao.Cor = atualizarCaminhaoRequest.Cor;
-        caminhao.TipoCombustivel = tipoCombustivel;
+        caminhao.TipoCombustivelCaminhao = tipoCombustivelCaminhao;
         caminhao.CapacidadeCargaToneladas = atualizarCaminhaoRequest.CapacidadeCargaToneladas;
         caminhao.QuantidadeEixos = atualizarCaminhaoRequest.QuantidadeEixos;
 

@@ -14,5 +14,5 @@ public class CadastrarCarroResponse
 
     public int AnoFabricacao { get; set; }
 
-    public string TipoCombustivel { get; set; }
+    public string TipoCombustivelCarro { get; set; }
 }
