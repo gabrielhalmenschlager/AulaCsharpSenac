@@ -2,7 +2,7 @@
 using Senac.GerenciamentoVeiculos.Domain.Dtos.Requests.Carro;
 using Senac.GerenciamentoVeiculos.Domain.Dtos.Responses.Caminhao;
 
-namespace Senac.GerenciamentoVeiculos.Domain.Services;
+namespace Senac.GerenciamentoVeiculos.Domain.Services.Caminhao;
 
 public interface ICaminhaoService
 {

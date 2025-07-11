@@ -1,9 +1,9 @@
 ﻿using Senac.GerenciamentoVeiculos.Domain.Dtos.Responses.Carro;
 using Senac.GerenciamentoVeiculos.Domain.Repositories;
 using Senac.GerenciamentoVeiculos.Domain.Dtos.Requests.Carro;
-using Senac.GerenciamentoVeiculos.Domain.Models;
+using Senac.GerenciamentoVeiculos.Domain.Models.Combustiveis;
 
-namespace Senac.GerenciamentoVeiculos.Domain.Services;
+namespace Senac.GerenciamentoVeiculos.Domain.Services.Carro;
 
 public class CarroService : ICarroService
 {

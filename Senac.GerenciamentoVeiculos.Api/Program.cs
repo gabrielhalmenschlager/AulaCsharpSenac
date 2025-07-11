@@ -1,5 +1,7 @@
 using Senac.GerenciamentoVeiculos.Domain.Repositories;
-using Senac.GerenciamentoVeiculos.Domain.Services;
+using Senac.GerenciamentoVeiculos.Domain.Services.Caminhao;
+using Senac.GerenciamentoVeiculos.Domain.Services.Carro;
+using Senac.GerenciamentoVeiculos.Domain.Services.Moto;
 using Senac.GerenciamentoVeiculos.Infra.Data.DataBaseConfiguration;
 using Senac.GerenciamentoVeiculos.Infra.Data.Repositories;
 

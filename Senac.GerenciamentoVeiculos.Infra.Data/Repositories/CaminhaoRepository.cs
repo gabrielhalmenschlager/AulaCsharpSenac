@@ -1,5 +1,6 @@
 ﻿using Dapper;
-using Senac.GerenciamentoVeiculos.Domain.Models;
+using Senac.GerenciamentoVeiculos.Domain.Models.Veiculos;
+using Senac.GerenciamentoVeiculos.Domain.Models.Veiculos.Caminhao;
 using Senac.GerenciamentoVeiculos.Domain.Repositories;
 using Senac.GerenciamentoVeiculos.Infra.Data.DataBaseConfiguration;
 

@@ -1,10 +1,9 @@
 ﻿using Senac.GerenciamentoVeiculos.Domain.Dtos.Requests.Caminhao;
 using Senac.GerenciamentoVeiculos.Domain.Dtos.Requests.Carro;
 using Senac.GerenciamentoVeiculos.Domain.Dtos.Responses.Caminhao;
-using Senac.GerenciamentoVeiculos.Domain.Models;
 using Senac.GerenciamentoVeiculos.Domain.Repositories;
 
-namespace Senac.GerenciamentoVeiculos.Domain.Services;
+namespace Senac.GerenciamentoVeiculos.Domain.Services.Caminhao;
 
 public class CaminhaoService : ICaminhaoService
 {

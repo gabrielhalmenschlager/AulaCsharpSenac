@@ -1,10 +1,10 @@
 ﻿using Senac.GerenciamentoVeiculos.Domain.Dtos.Requests.Carro;
 using Senac.GerenciamentoVeiculos.Domain.Dtos.Requests.Moto;
 using Senac.GerenciamentoVeiculos.Domain.Dtos.Responses.Moto;
-using Senac.GerenciamentoVeiculos.Domain.Models;
+using Senac.GerenciamentoVeiculos.Domain.Models.Combustiveis;
 using Senac.GerenciamentoVeiculos.Domain.Repositories;
 
-namespace Senac.GerenciamentoVeiculos.Domain.Services;
+namespace Senac.GerenciamentoVeiculos.Domain.Services.Moto;
 
 public class MotoService : IMotoService
 {

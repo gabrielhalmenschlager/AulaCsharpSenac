@@ -2,7 +2,7 @@
 using Senac.GerenciamentoVeiculos.Domain.Dtos.Requests.Carro;
 using Senac.GerenciamentoVeiculos.Domain.Dtos.Responses;
 using Senac.GerenciamentoVeiculos.Domain.Models;
-using Senac.GerenciamentoVeiculos.Domain.Services;
+using Senac.GerenciamentoVeiculos.Domain.Services.Carro;
 
 namespace Senac.GerenciamentoVeiculos.Api.Controllers;
 

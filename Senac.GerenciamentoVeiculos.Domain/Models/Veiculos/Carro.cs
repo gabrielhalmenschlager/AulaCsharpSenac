@@ -1,4 +1,6 @@
-﻿namespace Senac.GerenciamentoVeiculos.Domain.Models;
+﻿using Senac.GerenciamentoVeiculos.Domain.Models.Combustiveis;
+
+namespace Senac.GerenciamentoVeiculos.Domain.Models.Veiculos;
 
 public class Carro
 {

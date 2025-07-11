@@ -1,4 +1,4 @@
-﻿namespace Senac.GerenciamentoVeiculos.Domain.Models;
+﻿namespace Senac.GerenciamentoVeiculos.Domain.Models.Combustiveis;
 
 public enum TipoCombustivelMoto
 {

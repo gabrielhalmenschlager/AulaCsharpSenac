@@ -1,4 +1,4 @@
-﻿using Senac.GerenciamentoVeiculos.Domain.Models;
+﻿using Senac.GerenciamentoVeiculos.Domain.Models.Veiculos;
 
 namespace Senac.GerenciamentoVeiculos.Domain.Repositories;
 
