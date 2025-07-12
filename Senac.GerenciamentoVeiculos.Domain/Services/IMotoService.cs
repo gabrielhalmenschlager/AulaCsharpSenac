@@ -1,8 +1,7 @@
-﻿using Senac.GerenciamentoVeiculos.Domain.Dtos.Requests.Carro;
-using Senac.GerenciamentoVeiculos.Domain.Dtos.Requests.Moto;
+﻿using Senac.GerenciamentoVeiculos.Domain.Dtos.Requests.Moto;
 using Senac.GerenciamentoVeiculos.Domain.Dtos.Responses.Moto;
 
-namespace Senac.GerenciamentoVeiculos.Domain.Services.Moto;
+namespace Senac.GerenciamentoVeiculos.Domain.Services;
 
 public interface IMotoService
 {

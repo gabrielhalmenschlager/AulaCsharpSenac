@@ -1,5 +1,4 @@
 ﻿using Senac.GerenciamentoVeiculos.Domain.Models.Veiculos;
-using Senac.GerenciamentoVeiculos.Domain.Models.Veiculos.Caminhao;
 
 namespace Senac.GerenciamentoVeiculos.Domain.Repositories;
 

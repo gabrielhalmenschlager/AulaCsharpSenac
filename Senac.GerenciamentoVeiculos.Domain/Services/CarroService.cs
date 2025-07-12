@@ -2,8 +2,9 @@
 using Senac.GerenciamentoVeiculos.Domain.Repositories;
 using Senac.GerenciamentoVeiculos.Domain.Dtos.Requests.Carro;
 using Senac.GerenciamentoVeiculos.Domain.Models.Combustiveis;
+using Senac.GerenciamentoVeiculos.Domain.Models.Veiculos;
 
-namespace Senac.GerenciamentoVeiculos.Domain.Services.Carro;
+namespace Senac.GerenciamentoVeiculos.Domain.Services;
 
 public class CarroService : ICarroService
 {
@@ -16,47 +17,41 @@ public class CarroService : ICarroService
 
     public async Task<IEnumerable<ObterTodosCarrosResponse>> ObterTodos()
     {
-        var carros = await _carroRepository.ObterTodos();
+        var carro = await _carroRepository.ObterTodos();
 
-        var carrosResponse = carros
+        var carroResponse = carro
             .Select(x => new ObterTodosCarrosResponse
             {
                 Id = x.Id,
                 Nome = x.Nome,
             });
 
-        return carrosResponse;
+        return carroResponse;
     }
 
     public async Task<ObterCarroDetalhadoPorIdResponse> ObterDetalhadoPorId(long id)
     {
-        var carros = await _carroRepository.ObterDetalhadoPorId(id);
-
-        if (carros == null)
-        {
-            throw new Exception($"Carro com ID {id} não encontrado.");
-        }
+        var carro = await _carroRepository.ObterDetalhadoPorId(id);
+        ValidarSeCarroExiste(carro, id);
 
         var carrosResponse = new ObterCarroDetalhadoPorIdResponse
         {
-            Id = carros.Id,
-            Nome = carros.Nome,
-            Marca = carros.Marca,
-            Placa = carros.Placa,
-            Cor = carros.Cor,
-            AnoFabricacao = carros.AnoFabricacao,
-            TipoCombustivelCarro = carros.TipoCombustivelCarro.ToString()
+            Id = carro.Id,
+            Nome = carro.Nome,
+            Marca = carro.Marca,
+            Placa = carro.Placa,
+            Cor = carro.Cor,
+            AnoFabricacao = carro.AnoFabricacao,
+            TipoCombustivelCarro = carro.TipoCombustivelCarro.ToString()
         };
         return carrosResponse;
     }
 
     public async Task<CadastrarCarroResponse> Cadastrar(CadastrarCarroRequest cadastrarRequest)
     {
-        bool IsTipoCombustivelValido = Enum.TryParse(cadastrarRequest.TipoCombustivelCarro, ignoreCase: true , out TipoCombustivelCarro tipoCombustivelCarro);
-        if (!IsTipoCombustivelValido)
-        {
-            throw new Exception($"Tipo de combustível '{cadastrarRequest.TipoCombustivelCarro}' inválido.");
-        }
+        bool isTipoCombustivelValido = Enum.TryParse(cadastrarRequest.TipoCombustivelCarro, ignoreCase: true , out TipoCombustivelCarro tipoCombustivelCarro);
+        ValidarTipoCombustivel(isTipoCombustivelValido, cadastrarRequest.TipoCombustivelCarro);
+
         var carro = new Carro
         {
             Nome = cadastrarRequest.Nome,
@@ -85,35 +80,40 @@ public class CarroService : ICarroService
 
     public async Task DeletarPorId(long id)
     {
-        var carros = await _carroRepository.ObterDetalhadoPorId(id);
-
-        if (carros == null)
-        {
-            throw new Exception($"Não foi possivel deletar o carro com o id {id}");
-        }
+        var carro = await _carroRepository.ObterDetalhadoPorId(id);
+        ValidarSeCarroExiste(carro, id);
 
         await _carroRepository.DeletarPorId(id);
     }
 
     public async Task AtualizarPorId(long id, AtualizarCarroRequest atualizarCarroRequest)
     {
-        bool IsTipoCombustivelValido = Enum.TryParse(atualizarCarroRequest.TipoCombustivelCarro, ignoreCase: true, out TipoCombustivelCarro tipoCombustivelCarro);
-        if (!IsTipoCombustivelValido)
-        {
-            throw new Exception($"Tipo de combustível '{atualizarCarroRequest.TipoCombustivelCarro}' inválido.");
-        }
+        bool isTipoCombustivelValido = Enum.TryParse(atualizarCarroRequest.TipoCombustivelCarro, ignoreCase: true, out TipoCombustivelCarro tipoCombustivelCarro);
+        ValidarTipoCombustivel(isTipoCombustivelValido, atualizarCarroRequest.TipoCombustivelCarro);
 
         var carro = await _carroRepository.ObterDetalhadoPorId(id);
-
-        if (carro == null)
-        {
-            throw new Exception($"Carro com ID {id} não encontrado.");
-        }
+        ValidarSeCarroExiste(carro, id);
 
         carro.Placa = atualizarCarroRequest.Placa;
         carro.Cor = atualizarCarroRequest.Cor;
         carro.TipoCombustivelCarro = tipoCombustivelCarro;
     
         await _carroRepository.AtualizarPorId(carro);
+    }
+
+    private void ValidarSeCarroExiste(Carro carro, long id)
+    {
+        if (carro == null)
+        {
+            throw new Exception($"Carro com ID {id} não encontrado.");
+        }
+    }
+
+    private void ValidarTipoCombustivel(bool isTipoCombustivelValido, string tipoCombustivelCarro)
+    {
+        if (!isTipoCombustivelValido)
+        {
+            throw new Exception($"Tipo de combustível '{tipoCombustivelCarro}' inválido.");
+        }
     }
 }

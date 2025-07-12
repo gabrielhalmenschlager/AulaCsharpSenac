@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Senac.GerenciamentoVeiculos.Domain.Dtos.Requests.Carro;
 using Senac.GerenciamentoVeiculos.Domain.Dtos.Requests.Moto;
 using Senac.GerenciamentoVeiculos.Domain.Dtos.Responses;
-using Senac.GerenciamentoVeiculos.Domain.Services.Moto;
+using Senac.GerenciamentoVeiculos.Domain.Services;
 
 namespace Senac.GerenciamentoVeiculos.Api.Controllers;
 
