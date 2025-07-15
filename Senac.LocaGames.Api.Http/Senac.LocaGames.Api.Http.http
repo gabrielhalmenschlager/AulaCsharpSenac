@@ -1,0 +1,6 @@
+@Senac.LocaGames.Api.Http_HostAddress = http://localhost:5197
+
+GET {{Senac.LocaGames.Api.Http_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -133,6 +133,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senac.GerenciamentoVeiculos
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senac.GerenciamentoVeiculos.Infra.Data", "Senac.GerenciamentoVeiculos.Infra.Data\Senac.GerenciamentoVeiculos.Infra.Data.csproj", "{034964D5-5A15-4859-873C-8CB39CC710B6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Senac.LocaGames.Api", "Senac.LocaGames.Api", "{50FE8FC1-9A25-4800-ABDF-D2B59746BB3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senac.LocaGames.Api.Http", "Senac.LocaGames.Api.Http\Senac.LocaGames.Api.Http.csproj", "{028BC0BC-2199-4603-98D4-C55EB7BE8303}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senac.LocaGames.Domain", "Senac.LocaGames.Domain\Senac.LocaGames.Domain.csproj", "{F2EDE535-47FB-421A-9319-405B2C75D68F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senac.LocaGames.Infra.Data", "Senac.LocaGames.Infra.Data\Senac.LocaGames.Infra.Data.csproj", "{CE92DF4A-783D-4D3F-8F94-4703EB130B4A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -275,6 +283,18 @@ Global
 		{034964D5-5A15-4859-873C-8CB39CC710B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{034964D5-5A15-4859-873C-8CB39CC710B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{034964D5-5A15-4859-873C-8CB39CC710B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{028BC0BC-2199-4603-98D4-C55EB7BE8303}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{028BC0BC-2199-4603-98D4-C55EB7BE8303}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{028BC0BC-2199-4603-98D4-C55EB7BE8303}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{028BC0BC-2199-4603-98D4-C55EB7BE8303}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2EDE535-47FB-421A-9319-405B2C75D68F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2EDE535-47FB-421A-9319-405B2C75D68F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2EDE535-47FB-421A-9319-405B2C75D68F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2EDE535-47FB-421A-9319-405B2C75D68F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE92DF4A-783D-4D3F-8F94-4703EB130B4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE92DF4A-783D-4D3F-8F94-4703EB130B4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE92DF4A-783D-4D3F-8F94-4703EB130B4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE92DF4A-783D-4D3F-8F94-4703EB130B4A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -326,6 +346,9 @@ Global
 		{9A7D19E0-4B6F-465D-9664-1FEDE32B0E42} = {7B144CDF-3DE4-4F44-9A31-4D2D4A953FD8}
 		{3B43A20F-C6AC-4E2A-8542-39859A77C094} = {7B144CDF-3DE4-4F44-9A31-4D2D4A953FD8}
 		{034964D5-5A15-4859-873C-8CB39CC710B6} = {7B144CDF-3DE4-4F44-9A31-4D2D4A953FD8}
+		{028BC0BC-2199-4603-98D4-C55EB7BE8303} = {50FE8FC1-9A25-4800-ABDF-D2B59746BB3B}
+		{F2EDE535-47FB-421A-9319-405B2C75D68F} = {50FE8FC1-9A25-4800-ABDF-D2B59746BB3B}
+		{CE92DF4A-783D-4D3F-8F94-4703EB130B4A} = {50FE8FC1-9A25-4800-ABDF-D2B59746BB3B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {01E9BC51-8960-435E-8C89-4179E69888E1}
