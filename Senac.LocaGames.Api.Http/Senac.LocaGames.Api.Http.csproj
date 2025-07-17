@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Senac.LocaGames.Domain\Senac.LocaGames.Domain.csproj" />
+    <ProjectReference Include="..\Senac.LocaGames.Infra.Data\Senac.LocaGames.Infra.Data.csproj" />
   </ItemGroup>
 
 </Project>

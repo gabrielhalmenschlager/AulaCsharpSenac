@@ -1,3 +1,9 @@
+using Senac.GerenciamentoVeiculos.Infra.Data.DataBaseConfiguration;
+using Senac.LocaGames.Domain.Repositories;
+using Senac.LocaGames.Domain.Services;
+using Senac.LocaGames.Dominio.Models;
+using Senac.LocaGames.Infra.Data.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,6 +11,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+builder.Services.AddScoped<IDbConnectionFactory>(_ =>
+    new DbConnectionFactory(
+        "Server=(localdb)\\MSSQLLocalDB; Database=loca_games; Trusted_Connection=True;")
+    );
+
+builder.Services.AddScoped<IGameService, GameService>();
+builder.Services.AddScoped<IGameRepository, GameRepository>();
 
 var app = builder.Build();
 

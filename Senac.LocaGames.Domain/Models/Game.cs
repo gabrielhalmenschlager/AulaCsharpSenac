@@ -8,5 +8,5 @@ public class Game
     public bool Available { get; set; }
     public GameCategory Category { get; set; }
     public string Responsible { get; set; }
-    public DateTime WithdrawalDate { get; set; }
+    public DateTime? WithdrawalDate { get; set; }
 }

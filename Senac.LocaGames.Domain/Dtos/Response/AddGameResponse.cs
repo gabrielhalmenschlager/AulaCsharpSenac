@@ -1,9 +1,8 @@
-﻿using Senac.LocaGames.Dominio.Models;
+﻿namespace Senac.LocaGames.Domain.Dtos.Response;
 
-namespace Senac.LocaGames.Domain.Dtos.Request;
-
-public class AddGameRequest
+public class AddGameResponse
 {
+    public long Id { get; set; }
     public string Title { get; set; }
     public string Description { get; set; }
     public string Category { get; set; }
