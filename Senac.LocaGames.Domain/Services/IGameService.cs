@@ -9,7 +9,7 @@ public interface IGameService
     Task<GetDetailedGameByIdResponse> GetDetailedGameById(long id);
     Task<AddGameResponse> AddGame(AddGameRequest addGameRequest);
     Task UpdateGame(long id, UpdateGameRequest updateGameRequest);
-    Task<RentGameRequest> RentGame(RentGameRequest rentGameRequest);
+    Task<RentGameRequest> RentGame(long id, RentGameRequest rentGameRequest);
     Task ReturnGame(long id);
     Task DeleteGameById(long id);
 }

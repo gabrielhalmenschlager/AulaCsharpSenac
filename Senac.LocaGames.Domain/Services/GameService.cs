@@ -1,5 +1,4 @@
-﻿using System.Xml.Serialization;
-using Senac.LocaGames.Domain.Dtos.Request;
+﻿using Senac.LocaGames.Domain.Dtos.Request;
 using Senac.LocaGames.Domain.Dtos.Response;
 using Senac.LocaGames.Domain.Repositories;
 using Senac.LocaGames.Dominio.Models;
@@ -92,15 +91,50 @@ public class GameService : IGameService
     }
 
 
-    public async Task<RentGameRequest> RentGame(RentGameRequest rentGameRequest)
+    public async Task<RentGameRequest> RentGame(long id, RentGameRequest rentGameRequest)
     {
-        throw new NotImplementedException();
+        var game = await _gameRepository.GetDetailedGameById(id);
+        ValidateIfGameExists(game, id);
+
+        if (!game.Available)
+        {
+            throw new Exception("O jogo já está alugado.");
+        }
+
+        game.Available = false;
+        game.Responsible = rentGameRequest.Responsible;
+        game.WithdrawalDate = DateTime.Now;
+
+        int prazo = game.Category switch
+        {
+            GameCategory.BRONZE => 9,
+            GameCategory.SILVER => 6,
+            GameCategory.GOLD => 3,
+            _ => throw new Exception("Categoria inválida.")
+        };
+        await _gameRepository.UpdateGame(game.Id, game);
+
+        return rentGameRequest;
     }
+
 
     public async Task ReturnGame(long id)
     {
-        throw new NotImplementedException();
+        var game = await _gameRepository.GetDetailedGameById(id);
+        ValidateIfGameExists(game, id);
+
+        if (game.Available)
+        {
+            throw new Exception("O jogo já está disponível (não está alugado).");
+        }
+
+        game.Available = true;
+        game.Responsible = null;
+        game.WithdrawalDate = null;
+
+        await _gameRepository.UpdateGame(id, game);
     }
+
 
     public async Task DeleteGameById(long id)
     {
