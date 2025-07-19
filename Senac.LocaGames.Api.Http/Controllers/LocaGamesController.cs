@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Senac.LocaGames.Domain.Dtos.Error;
 using Senac.LocaGames.Domain.Dtos.Request;
 using Senac.LocaGames.Domain.Services;
 
@@ -18,25 +19,64 @@ public class LocaGamesController : Controller
     [HttpGet("/all/games")]
     public async Task<IActionResult> GetAllGames()
     {
-        return Ok();
+        var gameResponse = await _gameService.GetAllGames();
+
+        return Ok(gameResponse);
     }
 
     [HttpGet("/{id}/game")]
     public async Task<IActionResult> GetDetailedGameById([FromRoute] long id)
     {
-        return Ok();
+        try
+        {
+            var carroDetalhadoResponse = await _gameService.GetDetailedGameById(id);
+
+            return Ok(carroDetalhadoResponse);
+        }
+        catch (Exception ex)
+        {
+            var response = new ErrorResponse
+            {
+                Mensagem = ex.Message,
+            };
+            return NotFound(response);
+        }
     }
 
     [HttpPut("/add/game")]
-    public IActionResult AddGame([FromBody] AddGameRequest addGameRequest)
+    public async Task<IActionResult> AddGame([FromBody] AddGameRequest addGameRequest)
     {
-        return Ok();
+        try
+        {
+            var addResponse = await _gameService.AddGame(addGameRequest);
+            return Ok(addResponse);
+        }
+        catch (Exception ex)
+        {
+            var response = new ErrorResponse
+            {
+                Mensagem = ex.Message,
+            };
+            return NotFound(response);
+        }
     }
 
     [HttpPut("/game/{id}/update")]
     public async Task<IActionResult> UpdateGame([FromRoute] long id, [FromBody] UpdateGameRequest updateGameRequest)
     {
-        return Ok();
+        try
+        {
+            await _gameService.UpdateGame(id, updateGameRequest);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            var errorResponse = new ErrorResponse
+            {
+                Mensagem = ex.Message,
+            };
+            return BadRequest(errorResponse);
+        }
     }
 
     [HttpPut("/game/{id}/rent")]

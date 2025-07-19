@@ -7,6 +7,6 @@ public class GetAllGamesResponse
     public long Id { get; set; }
     public string Title { get; set; }
     public bool Available { get; set; }
-    public GameCategory Category { get; set; }
-    public DateTime WithdrawalDate { get; set; }
+    public string Category { get; set; }
+    public DateTime? WithdrawalDate { get; set; }
 }

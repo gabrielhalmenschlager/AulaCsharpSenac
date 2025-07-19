@@ -1,28 +1,97 @@
-﻿using Senac.LocaGames.Domain.Repositories;
+﻿using Dapper;
+using Senac.GerenciamentoVeiculos.Infra.Data.DataBaseConfiguration;
+using Senac.LocaGames.Domain.Repositories;
 using Senac.LocaGames.Dominio.Models;
 
 namespace Senac.LocaGames.Infra.Data.Repositories;
 
 public class GameRepository : IGameRepository
 {
-    public Task<long> AddGame(Game game)
+
+    private readonly IDbConnectionFactory _connectionFactory;
+
+    public GameRepository(IDbConnectionFactory connectionFactory)
     {
-        throw new NotImplementedException();
+        _connectionFactory = connectionFactory;
     }
 
-    public Task DeleteGameById(long id)
+    public async Task<IEnumerable<Game>> GetAllGames()
     {
-        throw new NotImplementedException();
+        return await _connectionFactory.CreateConnection()
+            .QueryAsync<Game>(
+            @"
+            SELECT 
+                g.id
+                , g.title
+                , g.available
+                , c.Id AS Category                    
+                , g.withdrawalDate
+            FROM 
+                game g
+            INNER JOIN
+                GameCategory c ON c.Id = g.CategoryId 
+            "
+            );
     }
 
-    public Task<IEnumerable<Game>> GetAllGames()
+    public async Task<Game> GetDetailedGameById(long id)
     {
-        throw new NotImplementedException();
+        return await _connectionFactory.CreateConnection()
+            .QueryFirstOrDefaultAsync<Game>(
+            @"
+            SELECT 
+                g.id
+                , g.title
+                , g.description
+                , g.available
+                , c.Id AS Category
+                , g.responsible
+                , g.withdrawalDate
+            FROM 
+                game g
+            INNER JOIN
+                GameCategory c ON c.Id = g.CategoryId   
+            "
+            );
     }
 
-    public Task<Game> GetDetailedGameById(long id)
+    public async Task<long> AddGame(Game game)
     {
-        throw new NotImplementedException();
+        return await _connectionFactory.CreateConnection()
+            .QueryFirstOrDefaultAsync(
+            @"
+            INSERT INTO game
+                (
+                  title
+                , description 
+                , categoryId
+                )
+            OUTPUT INSERTED.id
+            VALUES
+                (  
+                  @Title 
+                , @Description
+                , @Category
+                )
+            ",
+            game);
+    }
+
+    public async Task UpdateGame(long id, Game game)
+    {
+        await _connectionFactory.CreateConnection()
+            .QueryFirstOrDefaultAsync(
+            @"
+            UPDATE 
+                game
+            SET 
+                  title = @Title
+                , description = @Description
+                , categoryId = @GameCategory
+            WHERE 
+                id = @Id
+            ",
+            game);
     }
 
     public Task RentGame(Game game)
@@ -35,7 +104,7 @@ public class GameRepository : IGameRepository
         throw new NotImplementedException();
     }
 
-    public Task UpdateGame(long id, Game game)
+    public Task DeleteGameById(long id)
     {
         throw new NotImplementedException();
     }

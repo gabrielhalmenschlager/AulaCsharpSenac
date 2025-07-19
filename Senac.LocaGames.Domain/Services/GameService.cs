@@ -24,8 +24,8 @@ public class GameService : IGameService
                 Id = g.Id,
                 Title = g.Title,
                 Available = g.Available,
-                Category = g.Category,
-                WithdrawalDate = (DateTime)g.WithdrawalDate
+                Category = g.Category.ToString(),
+                WithdrawalDate = g.WithdrawalDate
             });
 
         return gameResponse;
@@ -42,10 +42,14 @@ public class GameService : IGameService
             Title = game.Title,
             Description = game.Description,
             Available = game.Available,
-            Category = game.Category,
+            Category = game.Category.ToString(),
             Responsible = game.Responsible,
-            WithdrawalDate = (DateTime)game.WithdrawalDate,
         };
+
+        if (game.WithdrawalDate > DateTime.Now)
+        {
+            gameResponse.IsInLate = true;
+        }
 
         return gameResponse;
     }

@@ -8,8 +8,8 @@ public class GetDetailedGameByIdResponse
     public string Title { get; set; }
     public string Description { get; set; }
     public bool Available { get; set; }
-    public GameCategory Category { get; set; }
+    public string Category { get; set; }
     public string Responsible { get; set; }
-    public DateTime WithdrawalDate { get; set; }
+    public DateTime? WithdrawalDate { get; set; }
     public bool IsInLate { get; set; }
 }
