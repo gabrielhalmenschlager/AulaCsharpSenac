@@ -63,15 +63,21 @@ public class GameRepository : IGameRepository
             INSERT INTO game
                 (
                   title
-                , description 
+                , description
+                , available
                 , categoryId
+                , responsible
+                , withdrawalDate
                 )
             OUTPUT INSERTED.id
             VALUES
                 (  
                   @Title 
                 , @Description
+                , @Available
                 , @Category
+                , @Responsible
+                , @WithdrawalDate
                 )
             ",
             game);
@@ -94,18 +100,48 @@ public class GameRepository : IGameRepository
             game);
     }
 
-    public Task RentGame(Game game)
+    public async Task RentGame(Game game)
     {
-        throw new NotImplementedException();
+        await _connectionFactory.CreateConnection()
+            .QueryFirstOrDefaultAsync(
+            @"
+            UPDATE game
+            SET 
+                available = 0,
+                responsible = @Responsible,
+                withdrawalDate = @WithdrawalDate
+            WHERE 
+                id = @Id
+            ",
+            game);
     }
 
-    public Task ReturnGame(long id)
+    public async Task ReturnGame(long id)
     {
-        throw new NotImplementedException();
+        await _connectionFactory.CreateConnection()
+            .ExecuteAsync(
+            @"
+            UPDATE game
+            SET 
+                available = 1,
+                responsible = NULL,
+                withdrawalDate = NULL
+            WHERE id = @Id
+            ", 
+            new { Id = id }
+            );
     }
 
-    public Task DeleteGameById(long id)
+    public async Task DeleteGameById(long id)
     {
-        throw new NotImplementedException();
+        await _connectionFactory.CreateConnection()
+            .QueryFirstOrDefaultAsync(
+            @"
+            DELETE 
+            FROM game
+            WHERE id = @Id
+            ",
+            new { Id = id }
+            );
     }
 }

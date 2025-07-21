@@ -44,6 +44,7 @@ public class GameService : IGameService
             Available = game.Available,
             Category = game.Category.ToString(),
             Responsible = game.Responsible,
+            WithdrawalDate = game.WithdrawalDate
         };
 
         if (game.WithdrawalDate > DateTime.Now)
@@ -105,10 +106,7 @@ public class GameService : IGameService
             throw new Exception("O jogo já está alugado.");
         }
 
-        game.Available = false;
-        game.Responsible = rentGameRequest.Responsible;
-        game.WithdrawalDate = DateTime.Now;
-
+        // Regras de prazo por categoria
         int prazo = game.Category switch
         {
             GameCategory.BRONZE => 9,
@@ -116,11 +114,15 @@ public class GameService : IGameService
             GameCategory.GOLD => 3,
             _ => throw new Exception("Categoria inválida.")
         };
-        await _gameRepository.UpdateGame(game.Id, game);
+
+        game.Available = false;
+        game.Responsible = rentGameRequest.Responsible;
+        game.WithdrawalDate = DateTime.Now.AddDays(prazo);
+
+        await _gameRepository.RentGame(game);
 
         return rentGameRequest;
     }
-
 
     public async Task ReturnGame(long id)
     {
@@ -132,11 +134,7 @@ public class GameService : IGameService
             throw new Exception("O jogo já está disponível (não está alugado).");
         }
 
-        game.Available = true;
-        game.Responsible = null;
-        game.WithdrawalDate = null;
-
-        await _gameRepository.UpdateGame(id, game);
+        await _gameRepository.ReturnGame(id);
     }
 
 
