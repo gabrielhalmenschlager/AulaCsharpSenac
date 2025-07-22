@@ -116,11 +116,11 @@ public class LocaGamesController : Controller
     }
 
     [HttpDelete("/game/{id}/delete")]
-    public async Task<IActionResult> DeleteGameById([FromBody] long id)
+    public async Task<IActionResult> DeleteGameById([FromRoute]long id)
     {
         try
         {
-            await _gameService.GetDetailedGameById(id);
+            await _gameService.DeleteGameById(id);
             return Ok();
         }
         catch (Exception ex)
@@ -132,4 +132,4 @@ public class LocaGamesController : Controller
             return BadRequest(erroResponse);
         }
     }
-}
+}   

@@ -62,7 +62,7 @@ public class CaminhaoController : Controller
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeletarPorId([FromBody] long id)
+    public async Task<IActionResult> DeletarPorId([FromRoute] long id)
     {
         try
         {

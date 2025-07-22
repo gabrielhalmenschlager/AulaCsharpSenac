@@ -106,7 +106,6 @@ public class GameService : IGameService
             throw new Exception("O jogo já está alugado.");
         }
 
-        // Regras de prazo por categoria
         int prazo = game.Category switch
         {
             GameCategory.BRONZE => 9,
@@ -136,7 +135,6 @@ public class GameService : IGameService
 
         await _gameRepository.ReturnGame(id);
     }
-
 
     public async Task DeleteGameById(long id)
     {

@@ -51,14 +51,16 @@ public class GameRepository : IGameRepository
                 game g
             INNER JOIN
                 GameCategory c ON c.Id = g.CategoryId   
-            "
+            WHERE g.id = @Id
+            ",
+            new { Id = id }
             );
     }
 
     public async Task<long> AddGame(Game game)
     {
         return await _connectionFactory.CreateConnection()
-            .QueryFirstOrDefaultAsync(
+            .QueryFirstOrDefaultAsync<long>(
             @"
             INSERT INTO game
                 (
@@ -107,9 +109,9 @@ public class GameRepository : IGameRepository
             @"
             UPDATE game
             SET 
-                available = 0,
-                responsible = @Responsible,
-                withdrawalDate = @WithdrawalDate
+                  available = 0
+                , responsible = @Responsible
+                , withdrawalDate = @WithdrawalDate
             WHERE 
                 id = @Id
             ",
@@ -123,9 +125,9 @@ public class GameRepository : IGameRepository
             @"
             UPDATE game
             SET 
-                available = 1,
-                responsible = NULL,
-                withdrawalDate = NULL
+                  available = 1
+                , responsible = NULL
+                , withdrawalDate = NULL
             WHERE id = @Id
             ", 
             new { Id = id }
@@ -137,8 +139,7 @@ public class GameRepository : IGameRepository
         await _connectionFactory.CreateConnection()
             .QueryFirstOrDefaultAsync(
             @"
-            DELETE 
-            FROM game
+            DELETE FROM game
             WHERE id = @Id
             ",
             new { Id = id }
