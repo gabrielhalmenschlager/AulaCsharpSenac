@@ -109,7 +109,7 @@ public class GameRepository : IGameRepository
             @"
             UPDATE game
             SET 
-                  available = 0
+                  available = @Available
                 , responsible = @Responsible
                 , withdrawalDate = @WithdrawalDate
             WHERE 
