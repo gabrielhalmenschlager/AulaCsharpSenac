@@ -47,7 +47,7 @@ public class GameService : IGameService
             WithdrawalDate = game.WithdrawalDate
         };
 
-        if (game.WithdrawalDate > DateTime.Now)
+        if (game.WithdrawalDate < DateTime.Now)
         {
             gameResponse.IsInLate = true;
         }
