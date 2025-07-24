@@ -95,7 +95,7 @@ public class GameRepository : IGameRepository
             SET 
                   title = @Title
                 , description = @Description
-                , categoryId = @GameCategory
+                , categoryId = @Category
             WHERE 
                 id = @Id
             ",
